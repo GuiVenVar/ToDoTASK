@@ -30,3 +30,24 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
     border-bottom: 1px solid black;
 }
 
+#taskList a[class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none"]{
+    margin-left:40%;
+}
+
+#searchText{
+    border-radius: 30px;
+}
+@media screen and (max-width: 800px){
+
+
+    #taskList a[class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none"]{
+        margin-left:35%;
+    }
+    #positionNavbar{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+}
