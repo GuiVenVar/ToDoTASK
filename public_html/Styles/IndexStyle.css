@@ -24,9 +24,7 @@ body{
     overflow: scroll;
     height: 100%;
 }
-#icoCompletadas{
-    margin-left: 10%;
-}
+
 ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
 
     border-bottom: 1px solid black;
