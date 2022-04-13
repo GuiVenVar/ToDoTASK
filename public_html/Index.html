@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Página desarrollada para TFGS">
         <meta name="author" content="Guillem Ventura">
-        <meta http-equiv="refresh" content="30">
+        <!--<meta http-equiv="refresh" content="30">-->
 
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -79,8 +79,7 @@
         onValue(starCountRef, (snapshot) => {
 
                 taskList.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">' +
-                '<i class="fa-regular fa-2xl fa-calendar-check" style="color:#413B39"></i>' +
-                ' <span class="fs-5 fw-bold" style="margin-left:1%;">Completadas </span>' +
+                ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Completadas </span>' +
                 '</a>';
 
             snapshot.forEach(function (childSnap) {
@@ -125,8 +124,7 @@
         onValue(starCountRef, (snapshot) => {
 
                 taskList.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">' +
-                '  <i class="fa-regular fa-2xl fa-calendar-xmark" style="color:#413B39"></i>  ' +
-                ' <span class="fs-5 fw-bold" style="margin-left:1%;">Pendientes </span>' +
+                ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Pendientes </span>' +
                 '</a>';
 
             snapshot.forEach(function (childSnap) {
@@ -175,9 +173,8 @@
             const starCountRef = ref(db, 'Tareas/')
         onValue(starCountRef, (snapshot) => {
 
-                taskList.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">' +
-                        '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#413B39"></i>'+
-                ' <span class="fs-5 fw-bold" style="margin-left:1%;">Busqueda Personalizada </span>' +
+                taskList.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none" id="taskListBusqueda">' +                  
+                ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Busqueda Personalizada </span>' +
                 '</a>';
 
             snapshot.forEach(function (childSnap) {
@@ -238,19 +235,22 @@
                 <lord-icon
                     src="https://cdn.lordicon.com/pijqcxrg.json"
                     trigger="loop"
+                    colors="secondary:#e6e6dc"
                     style="width:50px;height:50px">
                 </lord-icon>
             </a>
+            <div id="navItems">
 
-            <a href="#" class="nav-link py-3 " title="" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Completadas" id="icoCompletadas">
-                <i class="fa-regular fa-2xl fa-calendar-check" style="color:#413B39"></i>
+                <a href="#" class="nav-link py-3 " title="" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Completadas" id="icoCompletadas">
+                    <i class="fa-regular fa-2xl fa-calendar-check" style="color:#E6E6DC"></i>
 
-            </a>
-            <a href="#" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="center" data-bs-original-title="Pendientes" id="icoPendientes">
+                </a>
+                <a href="#" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="center" data-bs-original-title="Pendientes" id="icoPendientes">
 
-                <i class="fa-regular fa-2xl fa-calendar-xmark" style="color:#413B39"></i>
+                    <i class="fa-regular fa-2xl fa-calendar-xmark" style="color:#E6E6DC"></i>
 
-            </a>
+                </a>
+            </div>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="&#xF002; Identificador" aria-label="Search" style="border:1px solid black; font-family:Arial, FontAwesome" id="searchText">
                 <button class="btn btn-outline-success" type="submit" id="searchButton">Buscar</button>

@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12-abr-2022, 17:25:05
+    Author     : Guillem Ventura
+*/
+
+html , body , section{
+    height: 100%;
+}
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+.h-custom {
+    height: calc(100% - 73px);
+}
+
+div[class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary"]{
+    background-color: #00628B !important;
+}
+div[class="container-fluid h-custom"]{
+
+    background-color: #E6E6DC;
+}
+@media (max-width: 450px) {
+    .h-custom {
+        height: 100%;
+    }
+}
+
+
+@media (min-width: 1200px){
+    .offset-xl-1 {
+        margin-left: 0% !important;
+    }
+}

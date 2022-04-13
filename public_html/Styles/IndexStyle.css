@@ -18,11 +18,13 @@ body{
 }
 #navBar{
     border-bottom: 1px solid black;
+    background-color:  #00628B !important;
 }
 #taskList{  
     width: 100%;
     overflow: scroll;
     height: 100%;
+    background-color: #E6E6DC !important;
 }
 
 ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
@@ -31,23 +33,135 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
 }
 
 #taskList a[class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none"]{
-    margin-left:40%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 41% !important;
+    background-color:  #E6E6DC;
+
+}
+
+#taskList a[class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none"] *{
+    color:#81A594;
+
+}
+
+#taskList a[class="list-group-item list-group-item-action  py-3 lh-tight"]{
+
+    background-color: activeborder;
+
+}
+
+.list-group-item.active{
+
+    background-color: #00628B;
+    border-color: #00628B;
 }
 
 #searchText{
     border-radius: 30px;
 }
-@media screen and (max-width: 800px){
+#searchButton{
+    color:#E6E6DC;
+    border-color:#E6E6DC;
+}
+#navItems{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    border-radius:20px;
+}
+
+#navItems a{
+/*    border: 1px solid #E6E6DC;
+    border-radius: 10px;*/
+}
+
+/*Iphone X - SE */
+@media screen and (min-width: 275px){
+
+    #taskListCabecera{
+        font-size: 17px !important;
+    }
+    #taskList a[class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none"]{
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        padding-left: 31% !important;
+    }
+    #taskList a[id="taskListBusqueda"]{
+
+        padding-left: 17% !important;
+    }
+}
+
+
+
+#positionNavbar{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/* Samsung GXS21 -22 */
+@media screen and (min-width: 510px){
 
 
     #taskList a[class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none"]{
-        margin-left:35%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        padding-left: 35% !important;
+
+
+
     }
     #positionNavbar{
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         flex-direction: row;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
+/*Desktop collapsed*/
+@media screen and (min-width: 800px){
+
+
+    #taskList a[class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none"]{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #positionNavbar{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+/*Conventional Monitors */
+@media screen and (min-width: 1024px){
+
+
+    #taskList a[class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none"]{
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        padding-left: 42.6% !important;
+
+    }
+}
+
+
