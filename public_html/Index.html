@@ -22,6 +22,11 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+        <!-- Google Fonts --> 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
         <title>Mi TO-DO Task</title>
     </head>
     <body>
@@ -34,188 +39,176 @@
                Deploy Auth.
         -->
         <script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+import { DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
+// import { } from 'firebase/app-check';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-        // Import the functions you need from the SDKs you need
-            import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-            import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
-            import {DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
+    databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
+    authDomain: "tododaw.firebaseapp.com",
+    projectId: "tododaw",
+    storageBucket: "tododaw.appspot.com",
+    messagingSenderId: "669151393033",
+    appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
+    measurementId: "G-XV3GDKTE6J"
+};
 
-        // import { } from 'firebase/app-check';
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
+// Initialize Firebase
+const firebase = initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebase);
+const db = getDatabase();
+const loader = document.getElementById("loader");
 
-            // Your web app's Firebase configuration
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            const firebaseConfig = {
-                apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
-            databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
-            authDomain: "tododaw.firebaseapp.com",
-            projectId: "tododaw",
-            storageBucket: "tododaw.appspot.com",
-            messagingSenderId: "669151393033",
-            appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
-            measurementId: "G-XV3GDKTE6J"
-        };
+function loadData(element, estadoTarea) {
 
-            // Initialize Firebase
-            const firebase = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(firebase);
-            const db = getDatabase();
-            const taskList = document.getElementById("taskList");
-            const loader = document.getElementById("loader");
+    loader.style.visibility = "Visible";
 
-            function getDataCompletado() {
+    element.innerHTML = "";
 
-                loader.style.visibility = "Visible";
+    const starCountRef = ref(db, 'Tareas/')
+    onValue(starCountRef, (snapshot) => {
 
-            var primera = true;
-            /**
-            * Reiniciamos el taskList.
-            */
-            taskList.innerHTML = "";
+        element.innerHTML += '<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" id="taskList"> <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">' +
+            ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Completadas </span>' +
+            '</a>';
 
-            const starCountRef = ref(db, 'Tareas/')
-        onValue(starCountRef, (snapshot) => {
+        snapshot.forEach(function (childSnap) {
 
-                taskList.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">' +
-                ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Completadas </span>' +
-                '</a>';
+            if (childSnap.val().EstadoTarea == estadoTarea || estadoTarea == "Publicas") {
 
-            snapshot.forEach(function (childSnap) {
+                element.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true"  style="z-index=1;">' +
+                    '<div class="d-flex w-100 align-items-center justify-content-between">' +
+                    '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
+                    '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
+                    '</div>' +
+                    '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
+                    '</a>';
 
-        if (childSnap.val().EstadoTarea == true) {
-        if (primera == true) {
-                taskList.innerHTML += '<a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true" style="z-index=1;">' +
-                '<div class="d-flex w-100 align-items-center justify-content-between">' +
-                '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-                '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-                '</div>' +
-                '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-                '</a>';
-            primera = false;
-        } else {
-                taskList.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true"  style="z-index=1;">' +
-                '<div class="d-flex w-100 align-items-center justify-content-between">' +
-                '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-                '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-                '</div>' +
-                '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-                '</a>';
-        }
-        }
+            }
         });
 
+        element.innerHTML += "</div>";
+    });
+
+    loader.style.visibility = "hidden";
+}
+
+
+
+/**
+ * Search Element.
+ */
+
+var elementSearchText = document.getElementById("searchText");
+elementSearchText.oninput = function busquedaPersonalizada() {
+
+    loader.style.visibility = "Visible";
+
+    var primera = true;
+    
+    var element, i, tabcontent;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    element = document.getElementById("Publicas");
+    
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        tabcontent[i].innerHTML = "";
+    }
+    element.innerHTML = "";
+
+    const starCountRef = ref(db, 'Tareas/')
+    onValue(starCountRef, (snapshot) => {
+
+        element.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none" id="taskListBusqueda">' +
+            ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Busqueda Personalizada </span>' +
+            '</a>';
+
+        snapshot.forEach(function (childSnap) {
+
+
+            if (childSnap.val().NombreTarea.includes(elementSearchText.value)) {
+                if (primera == true) {
+                    element.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true" style="z-index=1;">' +
+                        '<div class="d-flex w-100 align-items-center justify-content-between">' +
+                        '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
+                        '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
+                        '</div>' +
+                        '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
+                        '</a>';
+                    primera = false;
+                } else {
+                    element.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true"  style="z-index=1;">' +
+                        '<div class="d-flex w-100 align-items-center justify-content-between">' +
+                        '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
+                        '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
+                        '</div>' +
+                        '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
+                        '</a>';
+                }
+            }
         });
 
-            loader.style.visibility="hidden";
-        }
+    });
 
-            function getDataPendiente() {
+    element.style.display = "block";
+    loader.style.visibility = "hidden";
 
-                loader.style.visibility = "Visible";
-            var primera = true;
-            /**
-            * Reiniciamos el taskList.
-            */
-            taskList.innerHTML = "";
-
-            const starCountRef = ref(db, 'Tareas/')
-        onValue(starCountRef, (snapshot) => {
-
-                taskList.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">' +
-                ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Pendientes </span>' +
-                '</a>';
-
-            snapshot.forEach(function (childSnap) {
-
-        if (childSnap.val().EstadoTarea == false) {
-        if (primera == true) {
-                taskList.innerHTML += '<a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true" style="z-index=1;">' +
-                '<div class="d-flex w-100 align-items-center justify-content-between">' +
-                '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-                '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-                '</div>' +
-                '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-                '</a>';
-            primera = false;
-        } else {
-                taskList.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true" style="z-index=1;">' +
-                '<div class="d-flex w-100 align-items-center justify-content-between">' +
-                '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-                '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-                '</div>' +
-                '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-                '</a>';
-        }
-        }
-        });
-
-        });
-
-            loader.style.visibility="hidden";
-        }
+};
 
 
+function openTasks(evt, taskType) {
+    
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
 
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        tabcontent[i].innerHTML = "";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    evt.style.display = "block";
+    evt.className += " active";
 
-            var elementSearchText = document.getElementById("searchText");          
-            elementSearchText.oninput = function busquedaPersonalizada(){
+    switch (taskType) {
+        case "tabLinkCompletadas":
+            loadData(document.getElementById("Completadas"), true);
+            document.getElementById("Completadas").style.display = "block";
+            break;
+        case "tabLinkPendientes":
+            loadData(document.getElementById("Pendientes"), false);
+            document.getElementById("Pendientes").style.display = "block";
+            break;
+        default:
+            loadData(document.getElementById("Publicas"), "Publicas");
+            document.getElementById("Publicas").style.display = "block";
+            break;
 
-                loader.style.visibility = "Visible";
+    }
 
-            var primera = true;
-            /**
-            * Reiniciamos el taskList.
-            */
-            taskList.innerHTML = "";
+    console.log(evt);
 
-            const starCountRef = ref(db, 'Tareas/')
-        onValue(starCountRef, (snapshot) => {
+}
 
-                taskList.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none" id="taskListBusqueda">' +                  
-                ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Busqueda Personalizada </span>' +
-                '</a>';
+var eTablinkPendiente = document.getElementById("tabLinkPendientes");
+eTablinkPendiente.onclick = function () { openTasks(eTablinkPendiente, 'tabLinkPendientes'); };
 
-            snapshot.forEach(function (childSnap) {
-   
+var eTablinkCompletadas = document.getElementById("tabLinkCompletadas");
+eTablinkCompletadas.onclick = function () { openTasks(eTablinkCompletadas, 'tabLinkCompletadas'); };
 
-        if(childSnap.val().NombreTarea.includes(elementSearchText.value)){
-        if (primera == true) {
-                taskList.innerHTML += '<a href="#" class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true" style="z-index=1;">' +
-                '<div class="d-flex w-100 align-items-center justify-content-between">' +
-                '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-                '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-                '</div>' +
-                '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-                '</a>';
-            primera = false;
-        } else {
-                taskList.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true"  style="z-index=1;">' +
-                '<div class="d-flex w-100 align-items-center justify-content-between">' +
-                '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-                '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-                '</div>' +
-                '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-                '</a>';
-        }
-        }
-        });
+var eTablinkPublicas = document.getElementById("tabLinkPublicas");
+eTablinkPublicas.onclick = function () { openTasks(eTablinkPublicas, 'tabLinkPublicas'); };
 
-        });
-
-            loader.style.visibility="hidden";
-   
-        };
-
-            var elementCompletado = document.getElementById("icoCompletadas");
-            elementCompletado.onclick = getDataCompletado;
-
-
-            var elementPendiente = document.getElementById("icoPendientes");
-            elementPendiente.onclick = getDataPendiente;
-
-            getDataPendiente();
 
         </script>
 
@@ -239,17 +232,10 @@
                     style="width:50px;height:50px">
                 </lord-icon>
             </a>
-            <div id="navItems">
-
-                <a href="#" class="nav-link py-3 " title="" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Completadas" id="icoCompletadas">
-                    <i class="fa-regular fa-2xl fa-calendar-check" style="color:#E6E6DC"></i>
-
-                </a>
-                <a href="#" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="center" data-bs-original-title="Pendientes" id="icoPendientes">
-
-                    <i class="fa-regular fa-2xl fa-calendar-xmark" style="color:#E6E6DC"></i>
-
-                </a>
+            <div class="tab">
+                <button class="tablinks" id="tabLinkPendientes">Pendientes</button>
+                <button class="tablinks" id="tabLinkCompletadas">Completadas</button>
+                <button class="tablinks" id="tabLinkPublicas">Públicas</button>
             </div>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="&#xF002; Identificador" aria-label="Search" style="border:1px solid black; font-family:Arial, FontAwesome" id="searchText">
@@ -258,9 +244,24 @@
         </div>
     </nav>
 
-    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" id="taskList">
+
+
+
+    <!-- Tab content -->
+    <div id="Pendientes" class="tabcontent">  
 
     </div>
+
+    <div id="Completadas" class="tabcontent"> 
+
+    </div>
+
+    <div id="Publicas" class="tabcontent">
+
+    </div>
+
+
+
 
 
 </body>
