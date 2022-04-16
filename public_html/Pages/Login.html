@@ -16,21 +16,21 @@ and open the template in the editor.
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        
-           <!-- Font Awesome -->
+
+        <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        
+
     </head>
     <body>
-        <section class="vh-100">
+        <section class="vh-100" id="containerLogin">
             <div class="container-fluid h-custom">
-             
+
                 <div class="row d-flex justify-content-center align-items-center h-100"><!--
-<!--Poner una imagen lateral-->
-<!--                    <div class="col-md-9 col-lg-6 col-xl-5">
-                        <img src="https://i0.wp.com/hipertextual.com/wp-content/uploads/2020/10/hipertextual-que-sirven-huesos-pene-y-que-humanos-no-tienen-2020152983.jpg?fit=1920%2C1280&ssl=1"
-                             class="img-fluid" alt="Sample image">
-                    </div>-->
+                    <!--Poner una imagen lateral-->
+                    <!--                    <div class="col-md-9 col-lg-6 col-xl-5">
+                                            <img src="https://i0.wp.com/hipertextual.com/wp-content/uploads/2020/10/hipertextual-que-sirven-huesos-pene-y-que-humanos-no-tienen-2020152983.jpg?fit=1920%2C1280&ssl=1"
+                                                 class="img-fluid" alt="Sample image">
+                                        </div>-->
                     <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                         <form>
                             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
@@ -54,16 +54,16 @@ and open the template in the editor.
 
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <input type="email" id="form3Example3" class="form-control form-control-lg"
+                                <input type="email" id="formEmail" class="form-control form-control-lg"
                                        placeholder="Enter a valid email address" />
-                                <label class="form-label" for="form3Example3">Email address</label>
+                                <label class="form-label" for="formEmail">Email address</label>
                             </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-3">
-                                <input type="password" id="form3Example4" class="form-control form-control-lg"
+                                <input type="password" id="formPwd" class="form-control form-control-lg"
                                        placeholder="Enter password" />
-                                <label class="form-label" for="form3Example4">Password</label>
+                                <label class="form-label" for="formPwd">Password</label>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center">
@@ -79,9 +79,9 @@ and open the template in the editor.
 
                             <div class="text-center text-lg-start mt-4 pt-2">
                                 <button type="button" class="btn btn-primary btn-lg"
-                                        style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                                        style="padding-left: 2.5rem; padding-right: 2.5rem;" id="btnLogin">Login</button>
                                 <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                                                                                                  class="link-danger">Register</a></p>
+                                                                                                  class="link-danger" id="containerBtnRegister">Register</a></p>
                             </div>
 
                         </form>
@@ -114,5 +114,133 @@ and open the template in the editor.
                 <!-- Right -->
             </div>
         </section>
+
+
+        <div class="container" id="containerRegister">
+            <div class="row centered-form">
+                <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Registro
+                            <input type="button" value="X" id="closeBtnRegister"/>
+                            </h3>
+                            
+                        </div>
+                        <div class="panel-body">
+                            <form role="form">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Registro" class="btn btn-info btn-block" id="btnRegister">
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="module">
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
+    databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
+    authDomain: "tododaw.firebaseapp.com",
+    projectId: "tododaw",
+    storageBucket: "tododaw.appspot.com",
+    messagingSenderId: "669151393033",
+    appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
+    measurementId: "G-XV3GDKTE6J"
+};
+
+// Initialize Firebase
+const firebase = initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebase);
+var btnLogin = document.getElementById("btnLogin");
+
+function logIn(){
+    
+var formEmail = document.getElementById("formEmail");
+var formPwd = document.getElementById("formPwd");
+
+if(formEmail.value != "" && formPwd != ""){
+    const auth = getAuth();
+        signInWithEmailAndPassword(formEmail.value, formPwd.value)
+            .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    alert("Logged in !");
+  
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert("Usuario o contraseña incorrectas ! ");
+  });
+    }
+    else{
+        alert("Usuario o contraseña vacías");
+    }
+}
+
+btnLogin.onclick = logIn;
+            
+        </script>
+
+        <script type="text/javascript">
+
+var loginContainer = document.getElementById("containerLogin");
+var registerContainer = document.getElementById("containerRegister");
+var registerButton = document.getElementById("containerBtnRegister");
+var closeBtnRegister = document.getElementById("closeBtnRegister");
+
+
+function loadLogin() {
+    loginContainer.style.pointerEvents = "all";
+    registerContainer.style.display = "none";
+}
+function loadRegister() {
+
+    loginContainer.style.pointerEvents = "none";
+    registerContainer.style.display = "block";
+
+}
+
+registerButton.onclick = loadRegister;
+closeBtnRegister.onclick = loadLogin;
+
+
+        </script>
     </body>
 </html>

@@ -72,19 +72,42 @@ function loadData(element, estadoTarea) {
     loader.style.visibility = "Visible";
 
     element.innerHTML = "";
+    var miHTML = "";
 
     const starCountRef = ref(db, 'Tareas/')
     onValue(starCountRef, (snapshot) => {
 
-        element.innerHTML += '<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" id="taskList"> <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">' +
-            ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Completadas </span>' +
+        miHTML += 
+            '<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" id="taskList">'+
+            '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">';
+
+switch(estadoTarea){
+    case true:
+        miHTML += 
+            '<span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera">'+
+            '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Completadas </span>' +
             '</a>';
+        break;
+    case false:
+                miHTML += 
+            '<span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera">'+
+            '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Pendientes </span>' +
+            '</a>';
+        break;
+    default:
+                miHTML += 
+            '<span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera">'+
+            '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Públicas </span>' +
+            '</a>';
+        break;
+}
 
         snapshot.forEach(function (childSnap) {
 
             if (childSnap.val().EstadoTarea == estadoTarea || estadoTarea == "Publicas") {
 
-                element.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true"  style="z-index=1;">' +
+                miHTML += 
+                    '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true"  style="z-index=1;">' +
                     '<div class="d-flex w-100 align-items-center justify-content-between">' +
                     '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
                     '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
@@ -95,8 +118,10 @@ function loadData(element, estadoTarea) {
             }
         });
 
-        element.innerHTML += "</div>";
+        miHTML += "</div>";
     });
+    
+    element.innerHTML += miHTML;
 
     loader.style.visibility = "hidden";
 }
