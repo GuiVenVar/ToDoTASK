@@ -47,13 +47,10 @@ div[class="container-fluid h-custom"]{
 }
 
 .centered-form .panel{
-/*    background: rgba(255, 255, 255, 0.8);
-    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
-    */
-    border-radius: 25px;
+    
     background: rgba(255, 255, 255, 0.8);
     box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px 9999px;
-        width: max-content;
+    width: max-content;
 }
 
 .panel-title input[type="button"]{
@@ -62,6 +59,10 @@ div[class="container-fluid h-custom"]{
 
 div[class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4"]{
     left:45%;
+}
+
+.red-input {
+  border: 1px solid red;
 }
 
 
@@ -80,3 +81,5 @@ div[class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4"]{
         margin-left: 0% !important;
     }
 }
+
+/*Comment*/
