@@ -9,6 +9,7 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <!--Stylesheet-->
         <link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="../Styles/LoginStyle.css">
 
@@ -115,16 +116,15 @@ and open the template in the editor.
             </div>
         </section>
 
-
         <div class="container" id="containerRegister">
             <div class="row centered-form">
                 <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Registro
-                            <input type="button" value="X" id="closeBtnRegister"/>
+                                <input type="button" value="&#xf00d" id="closeBtnRegister" style="font-family: FontAwesome; border:none; cursor:pointer; "/>
                             </h3>
-                            
+
                         </div>
                         <div class="panel-body">
                             <form role="form">
@@ -171,7 +171,7 @@ and open the template in the editor.
 
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+  import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
@@ -213,8 +213,26 @@ if(formEmail.value != "" && formPwd != ""){
         alert("Usuario o contraseña vacías");
     }
 }
-
+function registerUser(){
+    const auth = getAuth();
+    
+    
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+    
+}
 btnLogin.onclick = logIn;
+
+
             
         </script>
 
