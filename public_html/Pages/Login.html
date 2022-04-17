@@ -209,21 +209,26 @@ var btnFb = document.getElementById("fbBtn");
 
 function logIn(){
     
+    const auth = getAuth();
+    
 var formEmail = document.getElementById("formEmail");
 var formPwd = document.getElementById("formPwd");
 
 if(formEmail.value != "" && formPwd != ""){
-    const auth = getAuth();
-        signInWithEmailAndPassword(formEmail.value, formPwd.value)
+    
+        signInWithEmailAndPassword(auth ,formEmail.value,formPwd.value)
             .then((userCredential) => {
     // Signed in
     const user = userCredential.user;
-    alert("Logged in !");
+    
+    window.location.href = "..\\Index.html";
   
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    
+    console.log(error.message);
     alert("Usuario o contraseña incorrectas ! ");
   });
     }
