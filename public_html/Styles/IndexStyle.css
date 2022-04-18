@@ -82,11 +82,23 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
 }
 
 
+.py-3 .multi-button{
+    float: right;
+   display:none;
+
+}
+
+.py-3 .multi-button  button[class="fas fa-heart"]{
+    color:red;
+}
+.py-3 .multi-button  button[class="fas fa-trash"]{
+    color:darkslategrey;
+}
 
 /*Iphone X - SE */
 @media screen and (min-width: 340px){
-    
-    
+
+
     #loader{ 
 
         margin-left: 17vh; 
