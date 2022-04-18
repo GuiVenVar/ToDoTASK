@@ -1,56 +1,192 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
     <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Página desarrollada para TFGS">
-        <meta name="author" content="Guillem Ventura">
-        <!--<meta http-equiv="refresh" content="30">-->
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--Stylesheet-->
+        <link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="Styles/LoginStyle.css">
 
         <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" rel="noopener" target="_blank" href="Styles/IndexStyle.css">
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-        <!--Imagenes de LordIcon-->
-
-        <script src="https://cdn.lordicon.com/lusqsztk.js"></script> <!--sideNav Home -->
-
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        <!-- Google Fonts --> 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
-
-        <title>Mi TO-DO Task</title>
     </head>
     <body>
+        <section class="vh-100" id="containerLogin">
+            <div class="container-fluid h-custom">
 
+                <div class="row d-flex justify-content-center align-items-center h-100"><!--
+                    <!--Poner una imagen lateral-->
+                    <!--                    <div class="col-md-9 col-lg-6 col-xl-5">
+                                            <img src="https://i0.wp.com/hipertextual.com/wp-content/uploads/2020/10/hipertextual-que-sirven-huesos-pene-y-que-humanos-no-tienen-2020152983.jpg?fit=1920%2C1280&ssl=1"
+                                                 class="img-fluid" alt="Sample image">
+                                        </div>-->
+                    <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                        <form>
+                            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                                <p class="lead fw-normal mb-0 me-3">Entrar con </p>
+                                <button type="button" class="btn btn-primary btn-floating mx-3" id="fbBtn">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>               
+                            </div>
 
+                            <div class="divider d-flex align-items-center my-4">
+                                <p class="text-center fw-bold mx-3 mb-0">O quizás...</p>
+                            </div>
 
-        <!--       Llamada a los servicios Firebase :
-               Deploy server.
-               Deploy Database.
-               Deploy Auth.
-        -->
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="formEmail">Correo Electronico</label>
+                                <input type="email" id="formEmail" class="form-control form-control-lg border border-primary"
+                                       placeholder="Introduce tu correo electronico" />
+
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-3">
+
+                                <label class="form-label" for="formPwd">Contraseña</label>
+                                <input type="password" id="formPwd" class="form-control form-control-lg border border-primary"
+                                       placeholder="Contraseña" />
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- Checkbox -->
+                                <div class="form-check mb-0">
+
+                                </div>
+                                <a href="#!" class="text-body" id="btnForgot">Forgot password?</a>
+                            </div>
+
+                            <div class="text-center text-lg-start mt-4 pt-2">
+                                <button type="button" class="btn btn-primary btn-lg"
+                                        style="padding-left: 2.5rem; padding-right: 2.5rem;" id="btnLogin">Login</button>
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
+                                                                                                  class="link-danger" id="containerBtnRegister">Register</a></p>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+                <!-- Copyright -->
+                <div class="text-white mb-3 mb-md-0">
+                    Copyright © 2020. All rights reserved.
+                </div>
+                <!-- Copyright -->
+
+                <!-- Right -->
+                <div>
+                    <a href="#!" class="text-white me-4">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#!" class="text-white me-4">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#!" class="text-white me-4">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#!" class="text-white">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <!-- Right -->
+            </div>
+        </section>
+
+        <div class="container" id="containerRegister">
+            <div class="row centered-form">
+                <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Registro
+                                <input type="button" value="&#xf00d" id="closeBtnRegister" style="font-family: FontAwesome; border:none; cursor:pointer; "/>
+                            </h3>
+                        </div>
+                        <hr class="dropdown-divider border-info">
+                        <div class="panel-body">
+                            <form role="form" action="" id="forgotForm">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="nombre" id="nombreRegistro" class="form-control input-sm" placeholder="Nombre" >
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="apellidos" id="apellidosRegistro" class="form-control input-sm" placeholder="Apellidos" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="email" name="email" id="correoRegistro" class="form-control input-sm" placeholder="Correo Electronico" >
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="passwordRegistro" class="form-control input-sm" placeholder="Contraseña" >
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="password" name="password_confirmation" id="rtPasswordRegistro" class="form-control input-sm" placeholder="Reescribe la contraseña" id="rtPasswordRegistro">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="button" value="Registro" class="btn btn-info btn-block" id="btnRegister">
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="containerForgot">
+            <div class="row centered-form">
+                <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Recupera tu cuenta  
+                                <input type="button" value="&#xf00d" id="closeBtnForgot" style="font-family: FontAwesome; border:none; cursor:pointer; "/>
+                            </h3>
+                        </div>
+                        <hr class="dropdown-divider border-info">
+                        <div class="panel-body">
+                            <form role="form" action="" id="registerForm">
+                                <div class="form-group">
+                                    <input type="email" name="email" id="correoForgot" class="form-control input-sm" placeholder="Correo Electronico" >
+                                </div>
+                                <input type="button" value="Recuperar cuenta" class="btn btn-info btn-block" id="btnSendForgot">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script type="module">
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
-import { DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
-// import { } from 'firebase/app-check';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+  import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword ,sendPasswordResetEmail ,getRedirectResult ,signInWithPopup, FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
     databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
@@ -65,246 +201,202 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebase);
-const db = getDatabase();
-const loader = document.getElementById("loader");
-console.log(getAuth());
 
-function loadData(element, estadoTarea) {
+var btnLogin = document.getElementById("btnLogin");
+var btnRegister = document.getElementById("btnRegister");
+var btnSendForgot = document.getElementById("btnSendForgot");
+var btnFb = document.getElementById("fbBtn");
 
-    loader.style.visibility = "Visible";
+function logIn(){
+    
+    const auth = getAuth();
+    
+var formEmail = document.getElementById("formEmail");
+var formPwd = document.getElementById("formPwd");
 
-    element.innerHTML = "";
-    var miHTML = "";
-
-    const starCountRef = ref(db, 'Tareas/')
-    onValue(starCountRef, (snapshot) => {
-
-        miHTML += 
-            '<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" id="taskList">'+
-            '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">';
-
-switch(estadoTarea){
-    case true:
-        miHTML += 
-            '<span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera">'+
-            '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Completadas </span>' +
-            '</a>';
-        break;
-    case false:
-                miHTML += 
-            '<span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera">'+
-            '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Pendientes </span>' +
-            '</a>';
-        break;
-    default:
-                miHTML += 
-            '<span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera">'+
-            '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Públicas </span>' +
-            '</a>';
-        break;
+if(formEmail.value != "" && formPwd != ""){
+    
+        signInWithEmailAndPassword(auth ,formEmail.value,formPwd.value)
+            .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    
+    window.location.href = "Pages\\mainPage.html";
+  
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    
+    console.log(error.message);
+    alert("Usuario o contraseña incorrectas ! ");
+  });
+    }
+    else{
+        alert("Usuario o contraseña vacías");
+    }
 }
 
-        snapshot.forEach(function (childSnap) {
 
-            if (childSnap.val().EstadoTarea == estadoTarea || estadoTarea == "Publicas") {
-
-                miHTML += 
-                    '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true"  style="z-index=1;">' +
-                    '<div class="d-flex w-100 align-items-center justify-content-between">' +
-                    '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-                    '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-                    '</div>' +
-                    '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-                    '</a>';
-
-            }
-        });
-
-        miHTML += "</div>";
+function registerUser(){   
+    
+    var textNombre = document.getElementById("nombreRegistro");
+    var textApellidos = document.getElementById("apellidosRegistro");
+    var textEmail = document.getElementById("correoRegistro");
+    var textPwd = document.getElementById("passwordRegistro");
+    var textRetypePwd = document.getElementById("rtPasswordRegistro");
+    
+    var isVerified = true;
+    
+    const auth = getAuth();
+    
+    if(textNombre.value == ""){
+       textNombre.style.border = "1px solid red";    
+       isVerified = false;
+    }else{
+        textNombre.style.border = "none";
+        isVerified = true;
+    }
+    if(textApellidos.value == ""){
+        textApellidos.style.border = "1px solid red"; 
+        isVerified = false;
+    }else{
+        textApellidos.style.border = "none";
+        isVerified = true;
+    }
+    if(textEmail.value == ""){
+        textEmail.style.border = "1px solid red"; 
+        isVerified = false;
+    }else{
+        textEmail.style.border = "none";
+        isVerified = true;
+    }
+    if(textPwd.value == ""){
+        textPwd.style.border = "1px solid red"; 
+        isVerified = false;
+    }else{
+        textPwd.style.border = "none";
+        isVerified = true;
+    }
+    if(textRetypePwd.value == ""){
+        textRetypePwd.style.border = "1px solid red"; 
+        isVerified = false;
+    }else{
+        textRetypePwd.style.border = "none";
+        isVerified = true;
+    }
+    
+    if(textPwd.value != textRetypePwd.value && isVerified){
+        
+        textPwd.style.border = "1px solid red"; 
+        textRetypePwd.style.border = "1px solid red"; 
+        alert("Las contraseñas no coinciden.");
+    isVerified = false;
+        }
+    
+    if(isVerified){
+createUserWithEmailAndPassword(auth, textEmail.value, textRetypePwd.value)
+  .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    window.location.href = "..\\Index.html";
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log("Fallo");
+    // ..
+  });
+  }else{
+      alert("Verifica los datos");
+    
+    }
+  }
+  
+  function restorePassword(){
+      
+      var textEmail = document.getElementById("correoForgot");
+      
+      if(textEmail.value != ""){
+          
+    const auth = getAuth();
+    
+      sendPasswordResetEmail(auth,
+    textEmail.value)
+    .then(function() {
+      alert("Se ha enviado un correo de recuperación !")
+    })
+    .catch(function(error) {
+      alert(error + ": Ha habido un fallo en la recuperación")
     });
-    
-    element.innerHTML += miHTML;
+      }else{
+          textEmail.style.border = "1px solid red";
+          alert("No puede estár el campo del correo vacío");
+      }
+  }
+  
+  function loginFacebook(){
+      
+// Sign in using a popup.
+var provider = new FacebookAuthProvider();
+const auth = getAuth();
+provider.addScope('user_birthday');
+signInWithPopup(auth,provider).then(function(result) {
+  // This gives you a Facebook Access Token.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+});
+  }
 
-    loader.style.visibility = "hidden";
+btnFb.onclick = loginFacebook;
+btnLogin.onclick = logIn;
+btnRegister.onclick = registerUser;
+btnSendForgot.onclick = restorePassword;
+
+
+            
+        </script>
+
+        <script type="text/javascript">
+
+var loginContainer = document.getElementById("containerLogin");
+var registerContainer = document.getElementById("containerRegister");
+var forgotContainer = document.getElementById("containerForgot");
+var registerButton = document.getElementById("containerBtnRegister");
+var closeBtnRegister = document.getElementById("closeBtnRegister");
+var closeBtnForgot = document.getElementById("closeBtnForgot");
+var btnRegistro = document.getElementById("btnRegister");
+var btnForgot = document.getElementById("btnForgot");
+
+
+function loadLogin() {
+    loginContainer.style.pointerEvents = "all";
+    registerContainer.style.display = "none";
+    forgotContainer.style.display = "none";
 }
+function loadRegister() {
 
-
-
-/**
- * Search Element.
- */
-
-var elementSearchText = document.getElementById("searchText");
-elementSearchText.oninput = function busquedaPersonalizada() {
-
-    loader.style.visibility = "Visible";
-
-    var primera = true;
-    
-    var element, i, tabcontent;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    element = document.getElementById("Publicas");
-    
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        tabcontent[i].innerHTML = "";
-    }
-    element.innerHTML = "";
-
-    const starCountRef = ref(db, 'Tareas/')
-    onValue(starCountRef, (snapshot) => {
-
-        element.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none" id="taskListBusqueda">' +
-            ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Busqueda Personalizada </span>' +
-            '</a>';
-
-        snapshot.forEach(function (childSnap) {
-
-
-            if (childSnap.val().NombreTarea.includes(elementSearchText.value)) {
-                if (primera == true) {
-                    element.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true" style="z-index=1;">' +
-                        '<div class="d-flex w-100 align-items-center justify-content-between">' +
-                        '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-                        '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-                        '</div>' +
-                        '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-                        '</a>';
-                    primera = false;
-                } else {
-                    element.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true"  style="z-index=1;">' +
-                        '<div class="d-flex w-100 align-items-center justify-content-between">' +
-                        '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-                        '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-                        '</div>' +
-                        '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-                        '</a>';
-                }
-            }
-        });
-
-    });
-
-    element.style.display = "block";
-    loader.style.visibility = "hidden";
-
-};
-
-
-function openTasks(evt, taskType) {
-    
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        tabcontent[i].innerHTML = "";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    evt.style.display = "block";
-    evt.className += " active";
-
-    switch (taskType) {
-        case "tabLinkCompletadas":
-            loadData(document.getElementById("Completadas"), true);
-            document.getElementById("Completadas").style.display = "block";
-            break;
-        case "tabLinkPendientes":
-            loadData(document.getElementById("Pendientes"), false);
-            document.getElementById("Pendientes").style.display = "block";
-            break;
-        default:
-            loadData(document.getElementById("Publicas"), "Publicas");
-            document.getElementById("Publicas").style.display = "block";
-            break;
-
-    }
-
-    console.log(evt);
+    loginContainer.style.pointerEvents = "none";
+    registerContainer.style.display = "block";
 
 }
 
-var eTablinkPendiente = document.getElementById("tabLinkPendientes");
-eTablinkPendiente.onclick = function () { openTasks(eTablinkPendiente, 'tabLinkPendientes'); };
+function loadForgot() {
 
-var eTablinkCompletadas = document.getElementById("tabLinkCompletadas");
-eTablinkCompletadas.onclick = function () { openTasks(eTablinkCompletadas, 'tabLinkCompletadas'); };
+    loginContainer.style.pointerEvents = "none";
+    forgotContainer.style.display = "block";
 
-var eTablinkPublicas = document.getElementById("tabLinkPublicas");
-eTablinkPublicas.onclick = function () { openTasks(eTablinkPublicas, 'tabLinkPublicas'); };
+}
+
+closeBtnRegister.onclick = loadLogin;
+closeBtnForgot.onclick = loadLogin;
+btnForgot.onclick = loadForgot;
+registerButton.onclick = loadRegister;
+
 
 
         </script>
-
-        <!----->
-
-    <lord-icon
-        id="loader"
-        src="https://cdn.lordicon.com/ulhdumaq.json" 
-        trigger="loop" 
-        colors="primary:#121331,secondary:#000000"
-        style="width: auto;height: 21%; z-index: 999; margin-left: 40%; margin-top: 45vh;position: fixed;">
-    </lord-icon>
-
-    <nav class="navbar navbar-light bg-light" id="navBar"> 
-        <div class="container-fluid" id="positionNavbar">
-            <a class="navbar-brand">
-                <lord-icon
-                    src="https://cdn.lordicon.com/pijqcxrg.json"
-                    trigger="loop"
-                    colors="secondary:#e6e6dc"
-                    style="width:50px;height:50px">
-                </lord-icon>
-            </a>
-            <div class="tab">
-                <button class="tablinks" id="tabLinkPendientes">Pendientes</button>
-                <button class="tablinks" id="tabLinkCompletadas">Completadas</button>
-                <button class="tablinks" id="tabLinkPublicas">Públicas</button>
-            </div>
-                            <div class="dropdown text-end">
-                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    </a>
-                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="&#xF002; Identificador" aria-label="Search" style="border:1px solid black; font-family:Arial, FontAwesome" id="searchText">
-
-            </form>
-            
-        </div>
-    </nav>
-
-
-
-
-    <!-- Tab content -->
-    <div id="Pendientes" class="tabcontent">  
-
-    </div>
-
-    <div id="Completadas" class="tabcontent"> 
-
-    </div>
-
-    <div id="Publicas" class="tabcontent">
-
-    </div>
-
-
-
-
-
-</body>
-
-
+    </body>
 </html>

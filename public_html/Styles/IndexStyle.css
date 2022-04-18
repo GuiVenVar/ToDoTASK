@@ -84,7 +84,31 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
 
 
 /*Iphone X - SE */
-@media screen and (min-width: 275px){
+@media screen and (min-width: 340px){
+    
+    
+    #loader{ 
+
+        margin-left: 17vh; 
+    }
+
+    a[class="navbar-brand"]{
+        display: none;
+    }
+
+    #positionNavbar{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tab{
+
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }
 
     #taskListCabecera{
         font-size: 17px !important;
