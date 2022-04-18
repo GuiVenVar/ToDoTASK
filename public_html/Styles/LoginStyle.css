@@ -69,11 +69,11 @@ div[class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4"]{
 
 /*Media*/
 
-@media screen and (min-width: 0px){
+@media screen and (min-width: 0px) and (max-width:449px){
     html , body , section{
-    height: 98%;
+        height: 98%;
     }
-    
+
 
     #containerRegister .row{
         display: flex;
@@ -86,16 +86,20 @@ div[class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4"]{
 
 }
 
-@media (min-width: 450px) {
+@media (min-width: 450px) and (max-width: 1199px) {
     .h-custom {
         height: 100%;
     }
+
 }
 
 
 @media (min-width: 1200px){
     .offset-xl-1 {
         margin-left: 0% !important;
+    }
+    .container{
+        right: 22%;
     }
 }
 
