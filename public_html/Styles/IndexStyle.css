@@ -84,8 +84,21 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
 
 .py-3 .multi-button{
     float: right;
-   display:none;
+    display:none;   
+  
 
+}
+
+a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button{
+    
+    display:none;
+    
+}
+a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:hover{
+    
+    display:block;
+    transition:all 1s ease-in-out 0s;
+    
 }
 
 .py-3 .multi-button  button[class="fas fa-heart"]{
@@ -93,6 +106,14 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
 }
 .py-3 .multi-button  button[class="fas fa-trash"]{
     color:darkslategrey;
+}
+
+#dropdownUser1{
+    margin-left: -200%;
+}
+
+@media sceen and (min-width:658px) and (max-width:658px) and (max-height:869px) and (min-height:869px){
+    margin-left: 0%;
 }
 
 /*Iphone X - SE */

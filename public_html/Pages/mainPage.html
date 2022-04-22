@@ -31,7 +31,7 @@
 
         <title>Mi TO-DO Task</title>
     </head>
-    <body>
+    <body style="background-color: #E6E6DC;">
 
 
 
@@ -41,237 +41,432 @@
                Deploy Auth.
         -->
         <script type="module">
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
-            import { DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-            import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+// Import the functions you need from the SDKs you need
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+    import {DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+    import {getAuth, signOut} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
-            // import { } from 'firebase/app-check';
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
+// import { } from 'firebase/app-check';
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-            // Your web app's Firebase configuration
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            const firebaseConfig = {
-            apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
-            databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
-            authDomain: "tododaw.firebaseapp.com",
-            projectId: "tododaw",
-            storageBucket: "tododaw.appspot.com",
-            messagingSenderId: "669151393033",
-            appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
-            measurementId: "G-XV3GDKTE6J"
-            };
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
+    databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
+    authDomain: "tododaw.firebaseapp.com",
+    projectId: "tododaw",
+    storageBucket: "tododaw.appspot.com",
+    messagingSenderId: "669151393033",
+    appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
+    measurementId: "G-XV3GDKTE6J"
+};
 
-            // Initialize Firebase
-            const firebase = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(firebase);
-            const db = getDatabase();
-            const loader = document.getElementById("loader");
-            console.log(getAuth());
+    // Initialize Firebase
+    const firebase = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(firebase);
+    const db = getDatabase();
+    const loader = document.getElementById("loader");
+    console.log(getAuth());
 
-            function loadData(element, estadoTarea) {
+function loadData(element, estadoTarea) {
 
-            loader.style.visibility = "Visible";
+    loader.style.visibility = "Visible";
 
-            element.innerHTML = "";
-            var miHTML = "";
+    element.innerHTML = "";
 
-            const starCountRef = ref(db, 'Tareas/')
-            onValue(starCountRef, (snapshot) => {
+    var divTareasGeneral = document.createElement("div");
 
-            miHTML += 
-            '<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" id="taskList">'+
-            '<a href="#" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">';
+    const starCountRef = ref(db, 'Tareas/')
+    onValue(starCountRef, (snapshot) => {
 
-            switch(estadoTarea){
+        divTareasGeneral.className = "d-flex flex-column align-items-stretch flex-shrink-0 bg-white";
+        divTareasGeneral.id = "taskList";
+
+        var cajaTareas = document.createElement("a");
+        cajaTareas.href = "#";
+        cajaTareas.className = "d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none";
+
+        var spanCabeceraTarea = document.createElement("span");
+        spanCabeceraTarea.className = "fs-5 fw-bold";
+        spanCabeceraTarea.style.marginLeft = "1%";
+        spanCabeceraTarea.id = "taskListCabecera";
+
+        var textoCabecera = document.createElement("i");
+
+        switch (estadoTarea) {
             case true:
-            miHTML += 
-            '<span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera">'+
-            '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Completadas </span>' +
-            '</a>';
-            break;
-            case false:
-            miHTML += 
-            '<span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera">'+
-            '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Pendientes </span>' +
-            '</a>';
-            break;
-            default:
-            miHTML += 
-            '<span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera">'+
-            '<i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Públicas </span>' +
-            '</a>';
-            break;
-            }
 
-            snapshot.forEach(function (childSnap) {
+                textoCabecera.className = "fa-solid fa-2xl fa-magnifying-glass";
+                textoCabecera.style.color = "#81A594";
+                spanCabeceraTarea.appendChild(textoCabecera);
+                spanCabeceraTarea.innerHTML += "Completadas";
+
+                break;
+            case false:
+
+                textoCabecera.className = "fa-solid fa-2xl fa-magnifying-glass";
+                textoCabecera.style.color = "#81A594";
+                spanCabeceraTarea.appendChild(textoCabecera);
+                spanCabeceraTarea.innerHTML += "Pendientes";
+
+                break;
+            default:
+
+                textoCabecera.className = "fa-solid fa-2xl fa-magnifying-glass";
+                textoCabecera.style.color = "#81A594";
+                spanCabeceraTarea.appendChild(textoCabecera);
+                spanCabeceraTarea.innerHTML += "Públicas";
+
+                break;
+        }
+
+        /**
+         * Aqui unimos  el div general al "a" de la cabecera
+         */
+
+        cajaTareas.appendChild(spanCabeceraTarea);
+        divTareasGeneral.appendChild(cajaTareas);
+
+        /**
+         * Hasta aqui hemos generado la cabecera donde aparece el nombre del tipo de busqueda 
+         * - Pendientes
+         * - Completadas
+         * - Públicas
+         */
+
+        snapshot.forEach(function (childSnap) {
+
+            var bloqueTareas = document.createElement("a");
+            bloqueTareas.href = "#";
+            bloqueTareas.className = "list-group-item list-group-item-action py-3 lh-tight";
+            bloqueTareas.id = "bloqueTareas";
+            bloqueTareas.ariaCurrent = "true";
+            bloqueTareas.style.zIndex = "1";
+            
+            switch(childSnap.val().PrioridadTarea){
+                case "Alta":
+                    bloqueTareas.style.borderLeft = "5px solid red";
+                    break;
+                case "Media":                    
+                    bloqueTareas.style.borderLeft = "5px solid yellow";
+                    break;                              
+                case "Baja":                    
+                    bloqueTareas.style.borderLeft = "5px solid green";
+                    break;
+            }
 
             if (childSnap.val().EstadoTarea == estadoTarea || estadoTarea == "Publicas") {
 
-            miHTML += 
-            '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true" onmouseover="multiButtonHover(this)" onmouseout="removeButtonHover(this)" style="z-index=1;">' +            
-            '<div class="multi-button" id="multiButton">'+
-    '<button class="fas fa-heart"></button>'+
-    '<button class="fas fa-comment"></button>'+
-    '<button class="fas fa-share-alt"></button>'+
-    '<button class="fas fa-trash"></button>'+
-    '</div>'+
-            '<div class="d-flex w-100 align-items-center justify-content-between">' +
-            '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-            '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-            '</div>' +
-            '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-            '</a>';
+                var divTareaButtons = document.createElement("div");
+                divTareaButtons.className = "multi-button";
+                divTareaButtons.id = "multiButton";
 
+                var btnHeart = document.createElement("button");
+                btnHeart.className = "fas fa-heart";
+
+                var btnComment = document.createElement("button");
+                btnComment.className = "fas fa-comment";
+
+                var btnShare = document.createElement("button");
+                btnShare.className = "fas fa-share-alt";
+
+                var btnTrash = document.createElement("button");
+                btnTrash.className = "fas fa-trash";
+
+                divTareaButtons.appendChild(btnHeart);
+                divTareaButtons.appendChild(btnComment);
+                divTareaButtons.appendChild(btnShare);
+                divTareaButtons.appendChild(btnTrash);
+
+                var divDetallesTareas = document.createElement("div");
+                divDetallesTareas.className = "d-flex w-100 align-items-center justify-content-between";
+
+
+                var cabeceraDetalleTarea = document.createElement("strong");
+                cabeceraDetalleTarea.className = "mb-1";
+                cabeceraDetalleTarea.innerHTML += childSnap.val().NombreTarea;
+
+                var fechaTarea = document.createElement('small');
+                fechaTarea.innerHTML += childSnap.val().FechaCreacionTarea;
+
+                divDetallesTareas.appendChild(cabeceraDetalleTarea);
+                divDetallesTareas.appendChild(fechaTarea);
+
+                var divDescripcionTarea = document.createElement("div");
+                divDescripcionTarea.className = "col-10 mb-1 small";
+                divDescripcionTarea.innerHTML += childSnap.val().DescripcionTarea;
+
+                bloqueTareas.appendChild(divTareaButtons);
+                bloqueTareas.appendChild(divDetallesTareas);
+                bloqueTareas.appendChild(divDescripcionTarea);
+
+
+                bloqueTareas.onmouseover = function () {
+
+                    bloqueTareas.style.backgroundColor = "aliceblue";
+                    bloqueTareas.firstChild.style.display = "block";
+                }
+
+                bloqueTareas.onmouseout = function () {
+
+                    bloqueTareas.style.backgroundColor = "white";
+                    bloqueTareas.firstChild.style.display = "none";
+                }
+                
+                var divider = document.createElement("div");      
+                divider.className = "divider d-flex";
+                divider.style.height = "5px";
+                
+                divTareasGeneral.appendChild(divider);
+                
+                divTareasGeneral.appendChild(bloqueTareas);
             }
-            });
 
-            miHTML += "</div>";
-            });
+        });
+    });
 
-            element.innerHTML += miHTML;
+    element.appendChild(divTareasGeneral);
 
-            loader.style.visibility = "hidden";
+    loader.style.visibility = "hidden";
+}
+
+/**
+* Search Element.
+*/
+
+var elementSearchText = document.getElementById("searchText");
+elementSearchText.oninput = function busquedaPersonalizada() {
+
+    loader.style.visibility = "Visible";
+
+    var element, i, tabcontent;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    element = document.getElementById("Publicas");
+    var divTareasGeneral = document.createElement("div");
+
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        tabcontent[i].innerHTML = "";
+    }
+
+
+    const starCountRef = ref(db, 'Tareas/')
+    onValue(starCountRef, (snapshot) => {
+
+        divTareasGeneral.className = "d-flex flex-column align-items-stretch flex-shrink-0 bg-white";
+        divTareasGeneral.id = "taskList";
+
+        var cajaTareas = document.createElement("a");
+        cajaTareas.href = "#";
+        cajaTareas.className = "d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none";
+
+        var spanCabeceraTarea = document.createElement("span");
+        spanCabeceraTarea.className = "fs-5 fw-bold";
+        spanCabeceraTarea.style.marginLeft = "1%";
+        spanCabeceraTarea.id = "taskListCabecera";
+
+        var textoCabecera = document.createElement("i");
+        textoCabecera.className = "fa-solid fa-2xl fa-magnifying-glass";
+        textoCabecera.style.color = "#81A594";
+        spanCabeceraTarea.appendChild(textoCabecera);
+        spanCabeceraTarea.innerHTML += "Busqueda personalizada";
+
+        /**
+         * Hasta aqui hemos generado la cabecera donde aparece el nombre del tipo de busqueda 
+         * - Pendientes
+         * - Completadas
+         * - Públicas
+         */
+
+        cajaTareas.appendChild(spanCabeceraTarea);
+        divTareasGeneral.appendChild(cajaTareas);
+
+        snapshot.forEach(function (childSnap) {
+
+            var bloqueTareas = document.createElement("a");
+            bloqueTareas.href = "#";
+            bloqueTareas.className = "list-group-item list-group-item-action py-3 lh-tight";
+            bloqueTareas.id = "bloqueTareas";
+            bloqueTareas.ariaCurrent = "true";
+            bloqueTareas.style.zIndex = "1";
+            
+                        switch(childSnap.val().PrioridadTarea){
+                case "Alta":
+                    bloqueTareas.style.borderLeft = "5px solid red";
+                    break;
+                case "Media":                    
+                    bloqueTareas.style.borderLeft = "5px solid yellow";
+                    break;                              
+                case "Baja":                    
+                    bloqueTareas.style.borderLeft = "5px solid green";
+                    break;
             }
 
 
+            if (childSnap.val().NombreTarea.toLowerCase().includes(elementSearchText.value.toLowerCase())) {
 
-            /**
-            * Search Element.
-            */
+                var divTareaButtons = document.createElement("div");
+                divTareaButtons.className = "multi-button";
+                divTareaButtons.id = "multiButton";
 
-            var elementSearchText = document.getElementById("searchText");
-            elementSearchText.oninput = function busquedaPersonalizada() {
+                var btnHeart = document.createElement("button");
+                btnHeart.className = "fas fa-heart";
 
-            loader.style.visibility = "Visible";
+                var btnComment = document.createElement("button");
+                btnComment.className = "fas fa-comment";
 
-            var primera = true;
+                var btnShare = document.createElement("button");
+                btnShare.className = "fas fa-share-alt";
 
-            var element, i, tabcontent;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            element = document.getElementById("Publicas");
+                var btnTrash = document.createElement("button");
+                btnTrash.className = "fas fa-trash";
 
-            for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-            tabcontent[i].innerHTML = "";
+                divTareaButtons.appendChild(btnHeart);
+                divTareaButtons.appendChild(btnComment);
+                divTareaButtons.appendChild(btnShare);
+                divTareaButtons.appendChild(btnTrash);
+
+                var divDetallesTareas = document.createElement("div");
+                divDetallesTareas.className = "d-flex w-100 align-items-center justify-content-between";
+
+
+                var cabeceraDetalleTarea = document.createElement("strong");
+                cabeceraDetalleTarea.className = "mb-1";
+                cabeceraDetalleTarea.innerHTML += childSnap.val().NombreTarea;
+
+                var fechaTarea = document.createElement('small');
+                fechaTarea.innerHTML += childSnap.val().FechaCreacionTarea;
+
+                divDetallesTareas.appendChild(cabeceraDetalleTarea);
+                divDetallesTareas.appendChild(fechaTarea);
+
+                var divDescripcionTarea = document.createElement("div");
+                divDescripcionTarea.className = "col-10 mb-1 small";
+                divDescripcionTarea.innerHTML += childSnap.val().DescripcionTarea;
+
+                bloqueTareas.appendChild(divTareaButtons);
+                bloqueTareas.appendChild(divDetallesTareas);
+                bloqueTareas.appendChild(divDescripcionTarea);
+
+
+                bloqueTareas.onmouseover = function () {
+
+                    bloqueTareas.style.backgroundColor = "aliceblue";
+                    bloqueTareas.firstChild.style.display = "block";
+                }
+
+                bloqueTareas.onmouseout = function () {
+
+                    bloqueTareas.style.backgroundColor = "white";
+                    bloqueTareas.firstChild.style.display = "none";
+                }
+                
+                var divider = document.createElement("div");      
+                divider.className = "divider d-flex";
+                divider.style.height = "5px";
+                
+                divTareasGeneral.appendChild(divider);
+                
+                divTareasGeneral.appendChild(bloqueTareas);
+             
             }
-            element.innerHTML = "";
+        });
 
-            const starCountRef = ref(db, 'Tareas/')
-            onValue(starCountRef, (snapshot) => {
+    });
 
-            element.innerHTML += '<a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none" id="taskListBusqueda">' +
-            ' <span class="fs-5 fw-bold" style="margin-left:1%;" id="taskListCabecera"><i class="fa-solid fa-2xl fa-magnifying-glass" style="color:#81A594"></i>Busqueda Personalizada </span>' +
-            '</a>';
+    element.appendChild(divTareasGeneral);
+    
+    element.style.display = "block";
+    loader.style.visibility = "hidden";
 
-            snapshot.forEach(function (childSnap) {
+};
 
+function openTasks(evt, taskType) {
 
-            if (childSnap.val().NombreTarea.includes(elementSearchText.value)) {
-            if (primera == true) {
-            element.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true" onmouseover="multiButtonHover(this)" onmouseout="removeButtonHover(this)" style="z-index=1;">' +
-            '<div class="multi-button" id="multiButton">'+
-    '<button class="fas fa-heart"></button>'+
-    '<button class="fas fa-comment"></button>'+
-    '<button class="fas fa-share-alt"></button>'+
-    '<button class="fas fa-trash"></button>'+
-    '</div>'+
-            '<div class="d-flex w-100 align-items-center justify-content-between">' +
-            '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-            '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-            '</div>' +
-            '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-            '</a>';
-            primera = false;
-            } else {
-            element.innerHTML += '<a href="#" class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true" onmouseover="multiButtonHover(this)" onmouseout="removeButtonHover(this)" style="z-index=1;">' +
-            '<div class="multi-button" id="multiButton">'+
-    '<button class="fas fa-heart"></button>'+
-    '<button class="fas fa-comment"></button>'+
-    '<button class="fas fa-share-alt"></button>'+
-    '<button class="fas fa-trash"></button>'+
-    '</div>'+
-            '<div class="d-flex w-100 align-items-center justify-content-between">' +
-            '<strong class="mb-1">' + childSnap.val().NombreTarea + '</strong>' +
-            '<small>' + childSnap.val().FechaCreacionTarea + '</small>' +
-            '</div>' +
-            '<div class="col-10 mb-1 small">' + childSnap.val().DescripcionTarea + '</div>' +
-            '</a>';
-            }
-            }
-            });
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
 
-            });
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        tabcontent[i].innerHTML = "";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    evt.style.display = "block";
+    evt.className += " active";
 
-            element.style.display = "block";
-            loader.style.visibility = "hidden";
-
-            };
-
-
-            function openTasks(evt, taskType) {
-
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-
-            for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-            tabcontent[i].innerHTML = "";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            evt.style.display = "block";
-            evt.className += " active";
-
-            switch (taskType) {
-            case "tabLinkCompletadas":
+    switch (taskType) {
+        case "tabLinkCompletadas":
             loadData(document.getElementById("Completadas"), true);
             document.getElementById("Completadas").style.display = "block";
             break;
-            case "tabLinkPendientes":
+        case "tabLinkPendientes":
             loadData(document.getElementById("Pendientes"), false);
             document.getElementById("Pendientes").style.display = "block";
             break;
-            default:
+        default:
             loadData(document.getElementById("Publicas"), "Publicas");
             document.getElementById("Publicas").style.display = "block";
             break;
 
-            }
+    }
 
-            console.log(evt);
+    console.log(evt);
 
-            }
+}
 
-            var eTablinkPendiente = document.getElementById("tabLinkPendientes");
-            eTablinkPendiente.onclick = function () { openTasks(eTablinkPendiente, 'tabLinkPendientes'); };
+function UserSignOut() {
 
-            var eTablinkCompletadas = document.getElementById("tabLinkCompletadas");
-            eTablinkCompletadas.onclick = function () { openTasks(eTablinkCompletadas, 'tabLinkCompletadas'); };
+    const auth = getAuth();
+    signOut(auth).then(() => {
+        window.location.href = "..\\Index.html";
+        alert("Se ha desconectado !");
+    }).catch((error) => {
+        console.log("Error desconectando !");
+    });
 
-            var eTablinkPublicas = document.getElementById("tabLinkPublicas");
-            eTablinkPublicas.onclick = function () { openTasks(eTablinkPublicas, 'tabLinkPublicas'); };
+}
 
- loadData(document.getElementById("Publicas"), "Publicas");
- 
-        </script>
+
+
+var btnSignOut = document.getElementById("signOut");
+btnSignOut.onclick = function () { UserSignOut() };
+
+var eTablinkPendiente = document.getElementById("tabLinkPendientes");
+eTablinkPendiente.onclick = function () { openTasks(eTablinkPendiente, 'tabLinkPendientes');};
+
+var eTablinkCompletadas = document.getElementById("tabLinkCompletadas");
+eTablinkCompletadas.onclick = function () { openTasks(eTablinkCompletadas, 'tabLinkCompletadas');};
+
+var eTablinkPublicas = document.getElementById("tabLinkPublicas");
+eTablinkPublicas.onclick = function () { openTasks(eTablinkPublicas, 'tabLinkPublicas');};
+
+loadData(document.getElementById("Publicas"), "Publicas");
+
+</script >
 
         <script type="text/javascript">
 
+
 function multiButtonHover(element) {
-    
-    var firstchild = element.firstChild
+    var firstchild = element.firstChild;
     firstchild.style.display = "block";
+    element.style.backgroundColor = "aliceblue";
 }
 
 function removeButtonHover(element) {
-   var firstchild = element.firstChild
+    var firstchild = element.firstChild;
     firstchild.style.display = "none";
+    element.style.backgroundColor = "white";
+
 }
+
+
         </script>
 
         <!----->
@@ -294,28 +489,27 @@ function removeButtonHover(element) {
                                 style="width:50px;height:50px">
                             </lord-icon>
                         </a>-->
-            <div class="dropdown text-end">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-            </div>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="&#xF002; Identificador" aria-label="Search" style="border:1px solid black; font-family:Arial, FontAwesome" id="searchText">
+            </form>
+
             <div class="tab">
                 <button class="tablinks" id="tabLinkPendientes">Pendientes</button>
                 <button class="tablinks" id="tabLinkCompletadas">Completadas</button>
                 <button class="tablinks" id="tabLinkPublicas">Públicas</button>
             </div>
 
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="&#xF002; Identificador" aria-label="Search" style="border:1px solid black; font-family:Arial, FontAwesome" id="searchText">
-
-            </form>
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" id="dropdownUser1">
+                    <li><a class="dropdown-item" href="..\Pages\newTask.html">Nuevo Proyecto...</a></li>
+                    <li><a class="dropdown-item" href="..\Pages\profile.html">Perfil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#" id="signOut">Cerrar Sesión</a></li>
+                </ul>
+            </div>
 
         </div>
     </nav>
