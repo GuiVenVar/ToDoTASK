@@ -109,7 +109,10 @@ and open the template in the editor.
 
         <div class="container" id="containerRegister">
             <div class="row centered-form">
-                <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4" >
+
+
+                <div class="col-xs-12 col-sm-4 col-md-4 col-sm-offset-2 col-md-offset-4" ></div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-sm-offset-2 col-md-offset-4" >
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Registro
@@ -131,7 +134,31 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="edad" id="edadRegistro" class="form-control input-sm" placeholder="Edad" >
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="telefono" id="telefonoRegistro" class="form-control input-sm" placeholder="Telefono" >
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="empresa" id="empresaRegistro" class="form-control input-sm" placeholder="Empresa" >
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="cargo" id="cargoEmpresaRegistro" class="form-control input-sm" placeholder="Cargo en la empresa" >
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <input type="email" name="email" id="correoRegistro" class="form-control input-sm" placeholder="Correo Electronico" >
                                 </div>
@@ -155,6 +182,7 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-sm-offset-2 col-md-offset-4" ></div>
             </div>
         </div>
 
@@ -183,178 +211,178 @@ and open the template in the editor.
 
         <script type="module">
 
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
-  import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword ,sendPasswordResetEmail ,getRedirectResult ,signInWithPopup, FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+            import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword ,sendPasswordResetEmail ,getRedirectResult ,signInWithPopup, FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
-    databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
-    authDomain: "tododaw.firebaseapp.com",
-    projectId: "tododaw",
-    storageBucket: "tododaw.appspot.com",
-    messagingSenderId: "669151393033",
-    appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
-    measurementId: "G-XV3GDKTE6J"
-};
+            const firebaseConfig = {
+            apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
+            databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
+            authDomain: "tododaw.firebaseapp.com",
+            projectId: "tododaw",
+            storageBucket: "tododaw.appspot.com",
+            messagingSenderId: "669151393033",
+            appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
+            measurementId: "G-XV3GDKTE6J"
+            };
 
-// Initialize Firebase
-const firebase = initializeApp(firebaseConfig);
-const analytics = getAnalytics(firebase);
+            // Initialize Firebase
+            const firebase = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(firebase);
 
-var btnLogin = document.getElementById("btnLogin");
-var btnRegister = document.getElementById("btnRegister");
-var btnSendForgot = document.getElementById("btnSendForgot");
-var btnFb = document.getElementById("fbBtn");
+            var btnLogin = document.getElementById("btnLogin");
+            var btnRegister = document.getElementById("btnRegister");
+            var btnSendForgot = document.getElementById("btnSendForgot");
+            var btnFb = document.getElementById("fbBtn");
 
-function logIn(){
-    
-    const auth = getAuth();
-    
-var formEmail = document.getElementById("formEmail");
-var formPwd = document.getElementById("formPwd");
+            function logIn(){
 
-if(formEmail.value != "" && formPwd != ""){
-    
-        signInWithEmailAndPassword(auth ,formEmail.value,formPwd.value)
+            const auth = getAuth();
+
+            var formEmail = document.getElementById("formEmail");
+            var formPwd = document.getElementById("formPwd");
+
+            if(formEmail.value != "" && formPwd != ""){
+
+            signInWithEmailAndPassword(auth ,formEmail.value,formPwd.value)
             .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    
-    window.location.href = "Pages\\mainPage.html";
-  
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    
-    console.log(error.message);
-    alert("Usuario o contraseña incorrectas ! ");
-  });
-    }
-    else{
-        alert("Usuario o contraseña vacías");
-    }
-}
+            // Signed in
+            const user = userCredential.user;
+
+            window.location.href = "Pages\\mainPage.html";
+
+            })
+            .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            console.log(error.message);
+            alert("Usuario o contraseña incorrectas ! ");
+            });
+            }
+            else{
+            alert("Usuario o contraseña vacías");
+            }
+            }
 
 
-function registerUser(){   
-    
-    var textNombre = document.getElementById("nombreRegistro");
-    var textApellidos = document.getElementById("apellidosRegistro");
-    var textEmail = document.getElementById("correoRegistro");
-    var textPwd = document.getElementById("passwordRegistro");
-    var textRetypePwd = document.getElementById("rtPasswordRegistro");
-    
-    var isVerified = true;
-    
-    const auth = getAuth();
-    
-    if(textNombre.value == ""){
-       textNombre.style.border = "1px solid red";    
-       isVerified = false;
-    }else{
-        textNombre.style.border = "none";
-        isVerified = true;
-    }
-    if(textApellidos.value == ""){
-        textApellidos.style.border = "1px solid red"; 
-        isVerified = false;
-    }else{
-        textApellidos.style.border = "none";
-        isVerified = true;
-    }
-    if(textEmail.value == ""){
-        textEmail.style.border = "1px solid red"; 
-        isVerified = false;
-    }else{
-        textEmail.style.border = "none";
-        isVerified = true;
-    }
-    if(textPwd.value == ""){
-        textPwd.style.border = "1px solid red"; 
-        isVerified = false;
-    }else{
-        textPwd.style.border = "none";
-        isVerified = true;
-    }
-    if(textRetypePwd.value == ""){
-        textRetypePwd.style.border = "1px solid red"; 
-        isVerified = false;
-    }else{
-        textRetypePwd.style.border = "none";
-        isVerified = true;
-    }
-    
-    if(textPwd.value != textRetypePwd.value && isVerified){
-        
-        textPwd.style.border = "1px solid red"; 
-        textRetypePwd.style.border = "1px solid red"; 
-        alert("Las contraseñas no coinciden.");
-    isVerified = false;
-        }
-    
-    if(isVerified){
-createUserWithEmailAndPassword(auth, textEmail.value, textRetypePwd.value)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    window.location.href = "..\\Index.html";
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log("Fallo");
-    // ..
-  });
-  }else{
-      alert("Verifica los datos");
-    
-    }
-  }
-  
-  function restorePassword(){
-      
-      var textEmail = document.getElementById("correoForgot");
-      
-      if(textEmail.value != ""){
-          
-    const auth = getAuth();
-    
-      sendPasswordResetEmail(auth,
-    textEmail.value)
-    .then(function() {
-      alert("Se ha enviado un correo de recuperación !")
-    })
-    .catch(function(error) {
-      alert(error + ": Ha habido un fallo en la recuperación")
-    });
-      }else{
-          textEmail.style.border = "1px solid red";
-          alert("No puede estár el campo del correo vacío");
-      }
-  }
-  
-  function loginFacebook(){
-      
-// Sign in using a popup.
-var provider = new FacebookAuthProvider();
-const auth = getAuth();
-provider.addScope('user_birthday');
-signInWithPopup(auth,provider).then(function(result) {
-  // This gives you a Facebook Access Token.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  var user = result.user;
-});
-  }
+            function registerUser(){   
 
-btnFb.onclick = loginFacebook;
-btnLogin.onclick = logIn;
-btnRegister.onclick = registerUser;
-btnSendForgot.onclick = restorePassword;
-            
+            var textNombre = document.getElementById("nombreRegistro");
+            var textApellidos = document.getElementById("apellidosRegistro");
+            var textEmail = document.getElementById("correoRegistro");
+            var textPwd = document.getElementById("passwordRegistro");
+            var textRetypePwd = document.getElementById("rtPasswordRegistro");
+
+            var isVerified = true;
+
+            const auth = getAuth();
+
+            if(textNombre.value == ""){
+            textNombre.style.border = "1px solid red";    
+            isVerified = false;
+            }else{
+            textNombre.style.border = "none";
+            isVerified = true;
+            }
+            if(textApellidos.value == ""){
+            textApellidos.style.border = "1px solid red"; 
+            isVerified = false;
+            }else{
+            textApellidos.style.border = "none";
+            isVerified = true;
+            }
+            if(textEmail.value == ""){
+            textEmail.style.border = "1px solid red"; 
+            isVerified = false;
+            }else{
+            textEmail.style.border = "none";
+            isVerified = true;
+            }
+            if(textPwd.value == ""){
+            textPwd.style.border = "1px solid red"; 
+            isVerified = false;
+            }else{
+            textPwd.style.border = "none";
+            isVerified = true;
+            }
+            if(textRetypePwd.value == ""){
+            textRetypePwd.style.border = "1px solid red"; 
+            isVerified = false;
+            }else{
+            textRetypePwd.style.border = "none";
+            isVerified = true;
+            }
+
+            if(textPwd.value != textRetypePwd.value && isVerified){
+
+            textPwd.style.border = "1px solid red"; 
+            textRetypePwd.style.border = "1px solid red"; 
+            alert("Las contraseñas no coinciden.");
+            isVerified = false;
+            }
+
+            if(isVerified){
+            createUserWithEmailAndPassword(auth, textEmail.value, textRetypePwd.value)
+            .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            window.location.href = "..\\Index.html";
+            // ...
+            })
+            .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("Fallo");
+            // ..
+            });
+            }else{
+            alert("Verifica los datos");
+
+            }
+            }
+
+            function restorePassword(){
+
+            var textEmail = document.getElementById("correoForgot");
+
+            if(textEmail.value != ""){
+
+            const auth = getAuth();
+
+            sendPasswordResetEmail(auth,
+            textEmail.value)
+            .then(function() {
+            alert("Se ha enviado un correo de recuperación !")
+            })
+            .catch(function(error) {
+            alert(error + ": Ha habido un fallo en la recuperación")
+            });
+            }else{
+            textEmail.style.border = "1px solid red";
+            alert("No puede estár el campo del correo vacío");
+            }
+            }
+
+            function loginFacebook(){
+
+            // Sign in using a popup.
+            var provider = new FacebookAuthProvider();
+            const auth = getAuth();
+            provider.addScope('user_birthday');
+            signInWithPopup(auth,provider).then(function(result) {
+            // This gives you a Facebook Access Token.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            });
+            }
+
+            btnFb.onclick = loginFacebook;
+            btnLogin.onclick = logIn;
+            btnRegister.onclick = registerUser;
+            btnSendForgot.onclick = restorePassword;
+
         </script>
 
         <script type="text/javascript">

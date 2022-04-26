@@ -85,20 +85,19 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
 .py-3 .multi-button{
     float: right;
     display:none;   
-  
 
 }
 
 a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button{
-    
+
     display:none;
-    
+
 }
 a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:hover{
-    
+
     display:block;
     transition:all 1s ease-in-out 0s;
-    
+
 }
 
 .py-3 .multi-button  button[class="fas fa-heart"]{
@@ -147,10 +146,31 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
         font-size: 17px !important;
     }
 
+    #Completadas , #Pendientes , #Publicas{
+        height: 78.5%;
+    }
     #taskList a[id="taskListBusqueda"]{
 
         padding-left: 17% !important;
     }
+}
+
+@media screen and (min-width: 390px){
+
+
+    #Completadas , #Pendientes , #Publicas{
+        height: 83.5%;
+    }
+
+}
+
+@media screen and (min-width: 360px){
+
+
+    #Completadas , #Pendientes , #Publicas{
+        height: 83.5%;
+    }
+
 }
 
 /* Samsung GXS21 -22 */
@@ -165,6 +185,9 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
         margin-left: auto;
         margin-right: auto;
     }
+    #Completadas , #Pendientes , #Publicas{
+        height: auto;
+    }
 }
 /*Desktop collapsed*/
 @media screen and (min-width: 800px){
@@ -178,10 +201,21 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
         margin-left: auto;
         margin-right: auto;
     }
+    #Completadas , #Pendientes , #Publicas{
+        height: auto;
+    }
 }
 /*Conventional Monitors */
 @media screen and (min-width: 1024px){
+    #Completadas , #Pendientes , #Publicas{
+        height: 91%;
+    }
 
+}
+@media screen and (min-width: 1920px){
+    #Completadas , #Pendientes , #Publicas{
+        height: 96%;
+    }
 
 }
 
@@ -231,4 +265,28 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
     to {opacity: 1;}
 }
 
+
+.float{
+    position:fixed;
+    width:60px;
+    height:60px;
+    /*    bottom:40px;
+        right:40px;*/
+    bottom: 20px;
+    right: 25px;
+    background-color: #00628B;
+    color: #81A594;
+    border-radius:50px;
+    text-align:center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 999;
+}
+
+.float:hover{
+    color:white;
+}
+
+.my-float{
+    margin-top:22px;
+}
 
