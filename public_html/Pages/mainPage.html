@@ -31,7 +31,7 @@
 
         <title>Mi TO-DO Task</title>
     </head>
-    <body style="background-color: #E6E6DC;">
+    <body class="overflow-auto" style="background-color: #E6E6DC;">
 
 
 
@@ -73,7 +73,7 @@
 
 function loadData(element, estadoTarea) {
 
-    loader.style.visibility = "Visible";
+    loader.style.display = "block";
 
     element.innerHTML = "";
 
@@ -247,7 +247,7 @@ function loadData(element, estadoTarea) {
     element.appendChild(cajaTareas);
     element.appendChild(divTareasGeneral);
 
-    loader.style.visibility = "hidden";
+    loader.style.display = "none";
 }
 
 /**
@@ -498,70 +498,68 @@ function removeButtonHover(element) {
             <i class="fa fa-plus my-float"></i>
         </a>
 
-    <lord-icon
-        id="loader"
-        src="https://cdn.lordicon.com/ulhdumaq.json" 
-        trigger="loop" 
-        colors="primary:#121331,secondary:#000000"
-        style="width: auto;height: 21%; z-index: 999; margin-left: 40%; margin-top: 45vh;position: fixed;">
-    </lord-icon>
+        <div class="container mw-100 w-100 h-100" id="loader" style=" display: none;">
+            <div class="row centered-form mw-100 w-100 h-100" style="">
+                <div class="col-sm-3 col-md-4 col-sm-offset-2 col-md-offset-4"></div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-2 col-md-offset-4 d-flex justify-content-around align-content-around flex-wrap" style="/* display: flex; *//* align-content: space-around; *//* flex-wrap: wrap; */">
 
-    <nav class="navbar navbar-light bg-light" id="navBar"> 
-        <div class="container-fluid" id="positionNavbar">
-            <!--            <a class="navbar-brand">
-                            <lord-icon
-                                src="https://cdn.lordicon.com/pijqcxrg.json"
-                                trigger="loop"
-                                colors="secondary:#e6e6dc"
-                                style="width:50px;height:50px">
-                            </lord-icon>
-                        </a>-->
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="&#xF002; Identificador" aria-label="Search" style="border:1px solid black; font-family:Arial, FontAwesome" id="searchText">
-            </form>
+                    <lord-icon src="https://cdn.lordicon.com/ulhdumaq.json" trigger="loop" colors="primary:#121331,secondary:#000000" style="width: auto; height: 15%; z-index: 999;  margin-top: auto;  visibility: visible;">
+                    </lord-icon>
 
-            <div class="tab">
-                <button class="tablinks" id="tabLinkPendientes">Pendientes</button>
-                <button class="tablinks" id="tabLinkCompletadas">Completadas</button>
-                <button class="tablinks" id="tabLinkPublicas">Públicas</button>
+                </div>
+                <div class="col-sm-3 col-md-4 col-sm-offset-2 col-md-offset-4"></div>
             </div>
+        </div>
 
-            <div class="dropdown text-end">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" id="dropdownUser1">
-                    <li><a class="dropdown-item" href="..\Pages\newTask.html">Nuevo Proyecto...</a></li>
-                    <li><a class="dropdown-item" href="..\Pages\profile.html">Perfil</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#" id="signOut">Cerrar Sesión</a></li>
-                </ul>
+
+        <nav class="" id="navBar"> 
+            <div class="container-fluid" id="positionNavbar">
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="&#xF002; Identificador" aria-label="Search" style="border:1px solid black; font-family:Arial, FontAwesome" id="searchText">
+                </form>
+
+                <div class="tab overflow-hidden d-flex flex-wrap">
+                    <button class="tablinks" id="tabLinkPendientes">Pendientes</button>
+                    <button class="tablinks" id="tabLinkCompletadas">Completadas</button>
+                    <button class="tablinks" id="tabLinkPublicas">Públicas</button>
+                </div>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" id="dropdownUser1">
+                        <li><a class="dropdown-item" href="..\Pages\newTask.html">Nuevo Proyecto...</a></li>
+                        <li><a class="dropdown-item" href="..\Pages\profile.html">Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" id="signOut">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+
             </div>
+        </nav>
+
+
+
+
+        <!-- Tab content -->
+        <div id="Pendientes" class="tabcontent">  
 
         </div>
-    </nav>
 
+        <div id="Completadas" class="tabcontent"> 
 
+        </div>
 
+        <div id="Publicas" class="tabcontent">
 
-    <!-- Tab content -->
-    <div id="Pendientes" class="tabcontent">  
-
-    </div>
-
-    <div id="Completadas" class="tabcontent"> 
-
-    </div>
-
-    <div id="Publicas" class="tabcontent">
-
-    </div>
+        </div>
 
 
 
 
 
-</body>
+    </body>
 
 
 </html>

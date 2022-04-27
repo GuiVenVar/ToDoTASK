@@ -10,7 +10,8 @@ and open the template in the editor.
 
 
 html, body{
-    min-height:100%;
+    min-height:90%;
+    max-height: 100%;
 }
 body{
     height:100vh;
@@ -31,10 +32,7 @@ body{
 
 }
 #taskList{  
-    /*    width: 100%;*/
-    /*overflow: scroll;*/
-    /*height: 100%;*/
-    /*background-color: #E6E6DC !important;*/
+  
 }
 
 ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
@@ -78,14 +76,12 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
 
 #Completadas , #Pendientes , #Publicas{
     overflow: scroll;
-    height: 100%;
 }
 
 
 .py-3 .multi-button{
     float: right;
     display:none;   
-
 }
 
 a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button{
@@ -111,18 +107,9 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
     margin-left: -200%;
 }
 
-@media sceen and (min-width:658px) and (max-width:658px) and (max-height:869px) and (min-height:869px){
-    margin-left: 0%;
-}
-
 /*Iphone X - SE */
 @media screen and (min-width: 340px){
 
-
-    #loader{ 
-
-        margin-left: 17vh; 
-    }
 
     a[class="navbar-brand"]{
         display: none;
@@ -131,64 +118,13 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
     #positionNavbar{
         display: flex;
         justify-content: center;
-        flex-direction: row;
-        margin-left: auto;
-        margin-right: auto;
+        flex-direction: column;
     }
-
-    .tab{
-
-        flex-wrap: nowrap;
-        justify-content: space-around;
-    }
-
     #taskListCabecera{
         font-size: 17px !important;
     }
-
-    #Completadas , #Pendientes , #Publicas{
-        height: 78.5%;
-    }
-    #taskList a[id="taskListBusqueda"]{
-
-        padding-left: 17% !important;
-    }
 }
 
-@media screen and (min-width: 390px){
-
-
-    #Completadas , #Pendientes , #Publicas{
-        height: 83.5%;
-    }
-
-}
-
-@media screen and (min-width: 360px){
-
-
-    #Completadas , #Pendientes , #Publicas{
-        height: 83.5%;
-    }
-
-}
-
-/* Samsung GXS21 -22 */
-@media screen and (min-width: 510px){
-
-    #positionNavbar{
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: row;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    #Completadas , #Pendientes , #Publicas{
-        height: auto;
-    }
-}
 /*Desktop collapsed*/
 @media screen and (min-width: 800px){
 
@@ -198,37 +134,13 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
         align-items: center;
         justify-content: space-between;
         flex-direction: row;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    #Completadas , #Pendientes , #Publicas{
-        height: auto;
     }
 }
-/*Conventional Monitors */
-@media screen and (min-width: 1024px){
-    #Completadas , #Pendientes , #Publicas{
-        height: 91%;
-    }
-
-}
-@media screen and (min-width: 1920px){
-    #Completadas , #Pendientes , #Publicas{
-        height: 96%;
-    }
-
-}
-
-
 
 /* Style the tab */
 .tab {
-    overflow: hidden;
     border: 1px solid #00628B;
     background-color: #00628B;
-    display: flex;
-    margin:0;
-    padding:0;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -270,8 +182,6 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
     position:fixed;
     width:60px;
     height:60px;
-    /*    bottom:40px;
-        right:40px;*/
     bottom: 20px;
     right: 25px;
     background-color: #00628B;

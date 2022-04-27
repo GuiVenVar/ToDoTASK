@@ -5,6 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
+
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -22,23 +23,26 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     </head>
+
     <body>
+
         <section class="vh-100" id="containerLogin">
             <div class="container-fluid h-custom">
 
-                <div class="row d-flex justify-content-center align-items-center h-100"><!--
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <!--
                     <!--Poner una imagen lateral-->
                     <!--                    <div class="col-md-9 col-lg-6 col-xl-5">
-                                            <img src="https://i0.wp.com/hipertextual.com/wp-content/uploads/2020/10/hipertextual-que-sirven-huesos-pene-y-que-humanos-no-tienen-2020152983.jpg?fit=1920%2C1280&ssl=1"
-                                                 class="img-fluid" alt="Sample image">
-                                        </div>-->
+                                                <img src="https://i0.wp.com/hipertextual.com/wp-content/uploads/2020/10/hipertextual-que-sirven-huesos-pene-y-que-humanos-no-tienen-2020152983.jpg?fit=1920%2C1280&ssl=1"
+                                                     class="img-fluid" alt="Sample image">
+                                            </div>-->
                     <div class="col-md-8 col-lg-6 col-xl-4 ">
                         <form>
                             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                                 <p class="lead fw-normal mb-0 me-3">Entrar con </p>
                                 <button type="button" class="btn btn-primary btn-floating mx-3" id="fbBtn">
                                     <i class="fab fa-facebook-f"></i>
-                                </button>               
+                                </button>
                             </div>
 
                             <div class="divider d-flex align-items-center my-4">
@@ -48,7 +52,8 @@ and open the template in the editor.
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="formEmail">Correo Electronico</label>
-                                <input type="email" id="formEmail" class="form-control form-control-lg border border-primary"
+                                <input type="email" id="formEmail"
+                                       class="form-control form-control-lg border border-primary"
                                        placeholder="Introduce tu correo electronico" />
 
                             </div>
@@ -57,8 +62,8 @@ and open the template in the editor.
                             <div class="form-outline mb-3">
 
                                 <label class="form-label" for="formPwd">Contraseña</label>
-                                <input type="password" id="formPwd" class="form-control form-control-lg border border-primary"
-                                       placeholder="Contraseña" />
+                                <input type="password" id="formPwd"
+                                       class="form-control form-control-lg border border-primary" placeholder="Contraseña" />
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center">
@@ -106,17 +111,17 @@ and open the template in the editor.
                 <!-- Right -->
             </div>
         </section>
-
-        <div class="container" id="containerRegister">
+        <div class="container mw-100" id="containerRegister" style="display: block;">
             <div class="row centered-form">
 
 
-                <div class="col-xs-12 col-sm-4 col-md-4 col-sm-offset-2 col-md-offset-4" ></div>
-                <div class="col-xs-12 col-sm-4 col-md-4 col-sm-offset-2 col-md-offset-4" >
-                    <div class="panel panel-default">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-sm-offset-2 col-md-offset-4"></div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-sm-offset-2 col-md-offset-4" style="z-index: 999;">
+                    <div class="panel panel-default w-100">
                         <div class="panel-heading">
                             <h3 class="panel-title">Registro
-                                <input type="button" value="&#xf00d" id="closeBtnRegister" style="font-family: FontAwesome; border:none; cursor:pointer; "/>
+                                <input type="button" value="&#xf00d" id="closeBtnRegister"
+                                       style="font-family: FontAwesome; border:none; cursor:pointer; ">
                             </h3>
                         </div>
                         <hr class="dropdown-divider border-info">
@@ -125,24 +130,28 @@ and open the template in the editor.
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="nombre" id="nombreRegistro" class="form-control input-sm" placeholder="Nombre" >
+                                            <input type="text" name="nombre" id="nombreRegistro"
+                                                   class="form-control input-sm" placeholder="Nombre">
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="apellidos" id="apellidosRegistro" class="form-control input-sm" placeholder="Apellidos" >
+                                            <input type="text" name="apellidos" id="apellidosRegistro"
+                                                   class="form-control input-sm" placeholder="Apellidos">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="edad" id="edadRegistro" class="form-control input-sm" placeholder="Edad" >
+                                            <input type="date" name="edad" id="edadRegistro" class="form-control input-sm"
+                                                   placeholder="Edad">
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="telefono" id="telefonoRegistro" class="form-control input-sm" placeholder="Telefono" >
+                                            <input type="text" name="telefono" id="telefonoRegistro"
+                                                   class="form-control input-sm" placeholder="Telefono">
                                         </div>
                                     </div>
                                 </div>
@@ -150,28 +159,33 @@ and open the template in the editor.
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="empresa" id="empresaRegistro" class="form-control input-sm" placeholder="Empresa" >
+                                            <input type="text" name="empresa" id="empresaRegistro"
+                                                   class="form-control input-sm" placeholder="Empresa">
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="cargo" id="cargoEmpresaRegistro" class="form-control input-sm" placeholder="Cargo en la empresa" >
+                                            <input type="text" name="cargo" id="cargoEmpresaRegistro"
+                                                   class="form-control input-sm" placeholder="Cargo en la empresa">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" id="correoRegistro" class="form-control input-sm" placeholder="Correo Electronico" >
+                                    <input type="email" name="email" id="correoRegistro" class="form-control input-sm"
+                                           placeholder="Correo Electronico">
                                 </div>
 
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="password" name="password" id="passwordRegistro" class="form-control input-sm" placeholder="Contraseña" >
+                                            <input type="password" name="password" id="passwordRegistro"
+                                                   class="form-control input-sm" placeholder="Contraseña">
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="password" name="password_confirmation" id="rtPasswordRegistro" class="form-control input-sm" placeholder="Reescribe la contraseña" id="rtPasswordRegistro">
+                                            <input type="password" name="password_confirmation" id="rtPasswordRegistro"
+                                                   class="form-control input-sm" placeholder="Reescribe la contraseña">
                                         </div>
                                     </div>
                                 </div>
@@ -182,30 +196,34 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-4 col-sm-offset-2 col-md-offset-4" ></div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-sm-offset-2 col-md-offset-4"></div>
             </div>
         </div>
-
-        <div class="container" id="containerForgot">
-            <div class="row centered-form">
-                <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-                    <div class="panel panel-default">
+        <div class="container mw-100" id="containerForgot" style="display: block;">
+            <div class="row centered-form mw-100">
+                <div class="col-sm-3 col-md-4 col-sm-offset-2 col-md-offset-4"></div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-2 col-md-offset-4">
+                    <div class="panel panel-default w-100">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Recupera tu cuenta  
-                                <input type="button" value="&#xf00d" id="closeBtnForgot" style="font-family: FontAwesome; border:none; cursor:pointer; "/>
+                            <h3 class="panel-title">Recupera tu cuenta
+                                <input type="button" value="&#xf00d" id="closeBtnForgot"
+                                       style="font-family: FontAwesome; border:none; cursor:pointer; ">
                             </h3>
                         </div>
                         <hr class="dropdown-divider border-info">
                         <div class="panel-body">
                             <form role="form" action="" id="registerForm">
                                 <div class="form-group">
-                                    <input type="email" name="email" id="correoForgot" class="form-control input-sm" placeholder="Correo Electronico" >
+                                    <input type="email" name="email" id="correoForgot" class="form-control input-sm"
+                                           placeholder="Correo Electronico">
                                 </div>
-                                <input type="button" value="Recuperar cuenta" class="btn btn-info btn-block" id="btnSendForgot">
+                                <input type="button" value="Recuperar cuenta" class="btn btn-info btn-block"
+                                       id="btnSendForgot">
                             </form>
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-3 col-md-4 col-sm-offset-2 col-md-offset-4"></div>
             </div>
         </div>
 
@@ -213,7 +231,8 @@ and open the template in the editor.
 
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
             import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
-            import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword ,sendPasswordResetEmail ,getRedirectResult ,signInWithPopup, FacebookAuthProvider} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, getRedirectResult, signInWithPopup, FacebookAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            import { DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
             const firebaseConfig = {
             apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
@@ -229,22 +248,23 @@ and open the template in the editor.
             // Initialize Firebase
             const firebase = initializeApp(firebaseConfig);
             const analytics = getAnalytics(firebase);
+            const db = getDatabase();
 
             var btnLogin = document.getElementById("btnLogin");
             var btnRegister = document.getElementById("btnRegister");
             var btnSendForgot = document.getElementById("btnSendForgot");
             var btnFb = document.getElementById("fbBtn");
 
-            function logIn(){
+            function logIn() {
 
             const auth = getAuth();
 
             var formEmail = document.getElementById("formEmail");
             var formPwd = document.getElementById("formPwd");
 
-            if(formEmail.value != "" && formPwd != ""){
+            if (formEmail.value != "" && formPwd != "") {
 
-            signInWithEmailAndPassword(auth ,formEmail.value,formPwd.value)
+            signInWithEmailAndPassword(auth, formEmail.value, formPwd.value)
             .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
@@ -260,16 +280,20 @@ and open the template in the editor.
             alert("Usuario o contraseña incorrectas ! ");
             });
             }
-            else{
+            else {
             alert("Usuario o contraseña vacías");
             }
             }
 
 
-            function registerUser(){   
+            function registerUser() {
 
             var textNombre = document.getElementById("nombreRegistro");
             var textApellidos = document.getElementById("apellidosRegistro");
+            var textEdad = document.getElementById("edadRegistro");
+            var textTelefono = document.getElementById("telefonoRegistro");
+            var textEmpresa = document.getElementById("empresaRegistro");
+            var textCargo = document.getElementById("cargoEmpresaRegistro");
             var textEmail = document.getElementById("correoRegistro");
             var textPwd = document.getElementById("passwordRegistro");
             var textRetypePwd = document.getElementById("rtPasswordRegistro");
@@ -278,99 +302,146 @@ and open the template in the editor.
 
             const auth = getAuth();
 
-            if(textNombre.value == ""){
-            textNombre.style.border = "1px solid red";    
+            if (textNombre.value == "") {
+            textNombre.style.border = "1px solid red";
             isVerified = false;
-            }else{
+            } else {
             textNombre.style.border = "none";
             isVerified = true;
             }
-            if(textApellidos.value == ""){
-            textApellidos.style.border = "1px solid red"; 
+            if (textApellidos.value == "") {
+            textApellidos.style.border = "1px solid red";
             isVerified = false;
-            }else{
+            } else {
             textApellidos.style.border = "none";
             isVerified = true;
             }
-            if(textEmail.value == ""){
-            textEmail.style.border = "1px solid red"; 
+            if (textEdad.value == "") {
+            textEdad.style.border = "1px solid red";
             isVerified = false;
-            }else{
+            } else {
+            textEdad.style.border = "none";
+            isVerified = true;
+            }
+            if (textTelefono.value == "") {
+            textTelefono.style.border = "1px solid red";
+            isVerified = false;
+            } else {
+            textTelefono.style.border = "none";
+            isVerified = true;
+            }
+            if (textEmpresa.value == "") {
+            textEmpresa.style.border = "1px solid red";
+            isVerified = false;
+            } else {
+            textEmpresa.style.border = "none";
+            isVerified = true;
+            }
+            if (textCargo.value == "") {
+            textCargo.style.border = "1px solid red";
+            isVerified = false;
+            } else {
+            textCargo.style.border = "none";
+            isVerified = true;
+            }
+            if (textEmail.value == "") {
+            textEmail.style.border = "1px solid red";
+            isVerified = false;
+            } else {
             textEmail.style.border = "none";
             isVerified = true;
             }
-            if(textPwd.value == ""){
-            textPwd.style.border = "1px solid red"; 
+            if (textPwd.value == "") {
+            textPwd.style.border = "1px solid red";
             isVerified = false;
-            }else{
+            } else {
             textPwd.style.border = "none";
             isVerified = true;
             }
-            if(textRetypePwd.value == ""){
-            textRetypePwd.style.border = "1px solid red"; 
+            if (textRetypePwd.value == "") {
+            textRetypePwd.style.border = "1px solid red";
             isVerified = false;
-            }else{
+            } else {
             textRetypePwd.style.border = "none";
             isVerified = true;
             }
 
-            if(textPwd.value != textRetypePwd.value && isVerified){
+            if (textPwd.value != textRetypePwd.value && isVerified) {
 
-            textPwd.style.border = "1px solid red"; 
-            textRetypePwd.style.border = "1px solid red"; 
+            textPwd.style.border = "1px solid red";
+            textRetypePwd.style.border = "1px solid red";
             alert("Las contraseñas no coinciden.");
             isVerified = false;
             }
 
-            if(isVerified){
+            if (isVerified) {
             createUserWithEmailAndPassword(auth, textEmail.value, textRetypePwd.value)
             .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            window.location.href = "..\\Index.html";
-            // ...
+
+
+            // Aqui añadimos los datos del usuario como dato en BBDD
+console.log("USERID " + user.uid);
+            set(ref(getDatabase(), 'Usuarios/' + user.uid), {
+            ApellidosUsuario:document.getElementById("apellidosRegistro").value,
+            BibliografiaUsuario:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a lacus posuere odio sollicitudin ornare. Aenean lectus tellus, porttitor convallis venenatis non, pulvinar eu arcu. Etiam eget velit pulvinar, eleifend enim varius, tincidunt ipsum. In ut ornare nulla. Vestibulum et sem in felis suscipit faucibus. Etiam eu elit lobortis, tincidunt diam vel, tristique magna. Pellentesque ullamcorper neque at lacinia sollicitudin. Aenean felis eros, auctor a magna quis, fermentum lacinia enim. Etiam bibendum arcu at mi vulputate, at placerat sapien fringilla. In hac habitasse platea dictumst. Suspendisse sit amet lobortis mauris, eget rutrum nisi. Curabitur volutpat mi facilisis, euismod ligula in, ornare lorem.",
+            CargoUsuario:document.getElementById("cargoEmpresaRegistro").value,
+            CorreoUsuario:document.getElementById("correoRegistro").value,
+            EdadUsuario:document.getElementById("edadRegistro").value,
+            EmpresaUsuario:document.getElementById("empresaRegistro").value,
+            IDUsuario:user.uid,
+            NombreUsuario:document.getElementById("nombreRegistro").value,
+            PhotoPathUsuario:"/",
+            TelefonoUsuario:document.getElementById("telefonoRegistro").value,
+            VisibilidadUsuario:false
+            })
+           .then( () =>{
+                 window.location.href = "Pages\\mainPage.html";
+            });    
             })
             .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log("Fallo");
+            console.log("Fallo => " + errorMessage);
+            
             // ..
             });
-            }else{
+            } else {
             alert("Verifica los datos");
 
             }
             }
 
-            function restorePassword(){
+            function restorePassword() {
 
             var textEmail = document.getElementById("correoForgot");
 
-            if(textEmail.value != ""){
+            if (textEmail.value != "") {
 
             const auth = getAuth();
 
             sendPasswordResetEmail(auth,
             textEmail.value)
-            .then(function() {
+            .then(function () {
             alert("Se ha enviado un correo de recuperación !")
             })
-            .catch(function(error) {
+            .catch(function (error) {
             alert(error + ": Ha habido un fallo en la recuperación")
             });
-            }else{
+            } else {
             textEmail.style.border = "1px solid red";
             alert("No puede estár el campo del correo vacío");
             }
             }
 
-            function loginFacebook(){
+            function loginFacebook() {
 
             // Sign in using a popup.
             var provider = new FacebookAuthProvider();
             const auth = getAuth();
             provider.addScope('user_birthday');
-            signInWithPopup(auth,provider).then(function(result) {
+            signInWithPopup(auth, provider).then(function (result) {
             // This gives you a Facebook Access Token.
             var token = result.credential.accessToken;
             // The signed-in user info.
@@ -397,11 +468,7 @@ var btnRegistro = document.getElementById("btnRegister");
 var btnForgot = document.getElementById("btnForgot");
 
 
-function loadLogin() {
-    loginContainer.style.pointerEvents = "all";
-    registerContainer.style.display = "none";
-    forgotContainer.style.display = "none";
-}
+
 function loadRegister() {
 
     loginContainer.style.pointerEvents = "none";
@@ -415,14 +482,22 @@ function loadForgot() {
     forgotContainer.style.display = "block";
 
 }
+function loadLogin() {
+    loginContainer.style.pointerEvents = "all";
+    registerContainer.style.display = "none";
+    forgotContainer.style.display = "none";
+}
 
-closeBtnRegister.onclick = loadLogin;
-closeBtnForgot.onclick = loadLogin;
+
 btnForgot.onclick = loadForgot;
 registerButton.onclick = loadRegister;
+closeBtnRegister.onclick = loadLogin;
+closeBtnForgot.onclick = loadLogin;
 
+loadLogin();
 
 
         </script>
     </body>
+
 </html>
