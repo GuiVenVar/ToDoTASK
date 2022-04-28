@@ -24,7 +24,7 @@ and open the template in the editor.
 
     </head>
 
-    <body>
+    <body style="overflow: hidden;">
 
         <section class="vh-100" id="containerLogin">
             <div class="container-fluid h-custom">
@@ -33,8 +33,8 @@ and open the template in the editor.
                     <!--
                     <!--Poner una imagen lateral-->
                     <!--                    <div class="col-md-9 col-lg-6 col-xl-5">
-                                                <img src="https://i0.wp.com/hipertextual.com/wp-content/uploads/2020/10/hipertextual-que-sirven-huesos-pene-y-que-humanos-no-tienen-2020152983.jpg?fit=1920%2C1280&ssl=1"
-                                                     class="img-fluid" alt="Sample image">
+                                                <img src=""
+                                                     class="img-fluid" alt="Logo Empresa">
                                             </div>-->
                     <div class="col-md-8 col-lg-6 col-xl-4 ">
                         <form>
@@ -86,14 +86,12 @@ and open the template in the editor.
                 </div>
             </div>
             <div
-                class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+                class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-5 px-4 px-xl-5 bg-primary overflow-none">
                 <!-- Copyright -->
                 <div class="text-white mb-3 mb-md-0">
-                    Copyright © 2020. All rights reserved.
+                    Guillem Ventura © 2022. IES Sant Vicent Ferrer.
                 </div>
-                <!-- Copyright -->
 
-                <!-- Right -->
                 <div>
                     <a href="#!" class="text-white me-4">
                         <i class="fab fa-facebook-f"></i>
@@ -108,7 +106,6 @@ and open the template in the editor.
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
-                <!-- Right -->
             </div>
         </section>
         <div class="container mw-100" id="containerRegister" style="display: block;">
@@ -150,8 +147,7 @@ and open the template in the editor.
                                     </div>
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="telefono" id="telefonoRegistro"
-                                                   class="form-control input-sm" placeholder="Telefono">
+                                            <input type="tel" class="form-control input-sm" id="telefonoRegistro" name="phone" placeholder="123456789" pattern="[0-9]{9}" required>                                      
                                         </div>
                                     </div>
                                 </div>
@@ -323,7 +319,7 @@ and open the template in the editor.
             textEdad.style.border = "none";
             isVerified = true;
             }
-            if (textTelefono.value == "") {
+            if (textTelefono.value == "" || !Number.isInteger(textTelefono.value) || textTelefono.value.length != 9) {
             textTelefono.style.border = "1px solid red";
             isVerified = false;
             } else {
@@ -344,22 +340,24 @@ and open the template in the editor.
             textCargo.style.border = "none";
             isVerified = true;
             }
-            if (textEmail.value == "") {
+            if (textEmail.value == "" || !textEmail.value.includes("@") || !textEmail.value.includes(".")) {
             textEmail.style.border = "1px solid red";
             isVerified = false;
             } else {
             textEmail.style.border = "none";
             isVerified = true;
             }
-            if (textPwd.value == "") {
-            textPwd.style.border = "1px solid red";
+            if (textPwd.value == "" || textPwd.value.length < 8 || textPwd.value.length > 16 ) {
+            textPwd.style.border = "1px solid red";            
+            alert("Recuerda , la contraseña no puede tener menos de 8 carácteres o más de 16 !")
             isVerified = false;
             } else {
             textPwd.style.border = "none";
             isVerified = true;
             }
-            if (textRetypePwd.value == "") {
+            if (textRetypePwd.value == "" || textRetypePwd.value.length < 8 || textRetypePwd.value.length > 16 ) {
             textRetypePwd.style.border = "1px solid red";
+            alert("Recuerda , la contraseña no puede tener menos de 8 carácteres o más de 16 !")
             isVerified = false;
             } else {
             textRetypePwd.style.border = "none";
@@ -382,7 +380,7 @@ and open the template in the editor.
 
 
             // Aqui añadimos los datos del usuario como dato en BBDD
-console.log("USERID " + user.uid);
+            console.log("USERID " + user.uid);
             set(ref(getDatabase(), 'Usuarios/' + user.uid), {
             ApellidosUsuario:document.getElementById("apellidosRegistro").value,
             BibliografiaUsuario:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a lacus posuere odio sollicitudin ornare. Aenean lectus tellus, porttitor convallis venenatis non, pulvinar eu arcu. Etiam eget velit pulvinar, eleifend enim varius, tincidunt ipsum. In ut ornare nulla. Vestibulum et sem in felis suscipit faucibus. Etiam eu elit lobortis, tincidunt diam vel, tristique magna. Pellentesque ullamcorper neque at lacinia sollicitudin. Aenean felis eros, auctor a magna quis, fermentum lacinia enim. Etiam bibendum arcu at mi vulputate, at placerat sapien fringilla. In hac habitasse platea dictumst. Suspendisse sit amet lobortis mauris, eget rutrum nisi. Curabitur volutpat mi facilisis, euismod ligula in, ornare lorem.",
@@ -397,7 +395,12 @@ console.log("USERID " + user.uid);
             VisibilidadUsuario:false
             })
            .then( () =>{
+               if(getAuth().currentUser){
+                   alert(getAuth().currentUser);
                  window.location.href = "Pages\\mainPage.html";
+               }else{
+                   alert("No se ha establecido un usuario");
+               }
             });    
             })
             .catch((error) => {
