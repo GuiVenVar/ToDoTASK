@@ -12,9 +12,10 @@ html{
     height: 100%;
 }
 body{
-   /*margin-top:20px;*/
-   height: 100%;
+    /*margin-top:20px;*/
+    height: 100%;
     background:#f3f3f3;
+    overflow: hidden
 }
 
 /*ESTILOS NAVBAR*/
@@ -62,7 +63,7 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
         width: 33.33%;
     }
     .col-md-4{
-         width: 33.33%;
+        width: 33.33%;
     }
 }
 
@@ -129,7 +130,7 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
     position: absolute;
     top: 5px;
     left: 5px;
-        width: 100px;
+    width: 100px;
     height: 100px;
 }
 
@@ -248,3 +249,49 @@ ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
     left: 0;
     z-index: 10;
 }
+
+.wrapper{
+
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.file-upload{
+
+    height: auto;
+    width: auto;
+    border-radius: 28px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: all 1s;
+    font-size: 100px;
+    opacity: 0;
+    z-index: 99;
+}
+
+.file-upload:hover{
+    opacity: 1;
+    transition: all 1s;
+}
+input[type='file']{
+    opacity: 0;
+    position: absolute;
+    z-index: 11;
+    height:200px;
+    width:200px;
+    top:0;
+    left:0;
+    cursor:pointer;
+
+}
+
+
+
+
+

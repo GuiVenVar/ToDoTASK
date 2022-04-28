@@ -24,6 +24,101 @@ and open the template in the editor.
 
     </head>
     <body>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+            import { DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+            import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            const firebaseConfig = {
+            apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
+            databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
+            authDomain: "tododaw.firebaseapp.com",
+            projectId: "tododaw",
+            storageBucket: "tododaw.appspot.com",
+            messagingSenderId: "669151393033",
+            appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
+            measurementId: "G-XV3GDKTE6J"
+            };
+
+            // Initialize Firebase
+            const firebase = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(firebase);
+            const db = getDatabase();
+            const usuarioAuth = getAuth();
+            const fotoPerfil = document.getElementById("fotoPerfil");
+            const fotoPerfilNav = document.getElementById("fotoPerfilNav");
+            const nombreUsuario = document.getElementById("nombreUsuario");
+            const datosUsuario = document.getElementById("fechaNacimiento");
+            const bibliografiaUsuario = document.getElementById("bibliografiaUsuario");
+            const backgroundUploadPhoto = document.getElementById("file-upload");            
+            
+
+backgroundUploadPhoto.style.backgroundImage = "url(https://www.freeiconspng.com/uploads/upload-icon-30.png)";
+
+
+            getAuth().onAuthStateChanged(function (user) {
+            if (user) {
+            const userRef = ref(db, 'Usuarios/' + getAuth().currentUser.uid);
+            onValue(userRef, (snapshot) => {
+            if(snapshot.val().PhotoPathUsuario != "\\"){
+            const data = snapshot.val();
+            fotoPerfil.src = data.PhotoPathUsuario;  
+            fotoPerfilNav.src = data.PhotoPathUsuario;  
+            nombreUsuario.innerHTML = data.NombreUsuario + " " + data.ApellidosUsuario;
+            var myDate = new Date(data.EdadUsuario);  
+                       
+            var paragraphFNacimiento = document.createElement("p");
+            paragraphFNacimiento.innerHTML = "Fecha de nacimiento: " + (myDate.getDay()-1) +"/"+(myDate.getMonth()+1)+"/"+myDate.getFullYear();
+            
+            var paragraphTelefono = document.createElement("p");
+            paragraphTelefono.innerHTML = "Telefono: "+data.TelefonoUsuario;
+            
+            var paragraphEmpresa = document.createElement("p");
+            paragraphEmpresa.innerHTML = "Empresa "+data.EmpresaUsuario;
+            
+            var paragraphCargo = document.createElement("p");
+            paragraphCargo.innerHTML = "Cargo: "+data.CargoUsuario;
+            
+            datosUsuario.innerHTML = "";
+            datosUsuario.appendChild(paragraphFNacimiento);
+            datosUsuario.appendChild(paragraphTelefono);
+            datosUsuario.appendChild(paragraphEmpresa);
+            datosUsuario.appendChild(paragraphCargo);
+            
+            var paragraphBibliografia = document.createElement("p");
+            paragraphBibliografia.innerHTML = "Bibliografía: "+data.BibliografiaUsuaro;
+            
+            bibliografiaUsuario.appendChild(paragraphBibliografia);
+
+            }else{
+            fotoPerfil.src = "https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png";
+            fotoPerfilNav.src = "https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png";
+            }
+            });
+            } else {
+
+            alert("Usuario deslogueado !");
+            window.location.href = "..\\Index.html";
+            }
+            });
+
+        function UserSignOut() {
+
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                window.location.href = "..\\Index.html";
+            }).catch((error) => {
+                console.log("Error desconectando !");
+            });
+
+        }
+
+        var btnSignOut = document.getElementById("signOut");
+        btnSignOut.onclick = function () { UserSignOut() };
+
+        </script>
+
         <nav class="navbar navbar-light bg-light" id="navBar"> 
             <div class="container-fluid" id="positionNavbar">
                 <a class="navbar-brand" style="color: blue;" href="..\Pages\mainPage.html">
@@ -33,12 +128,17 @@ and open the template in the editor.
                         colors="secondary:#e6e6dc"
                         style="width:50px;height:50px">
                     </lord-icon>
-                    Perfil
+                    <lord-icon
+                        src="https://cdn.lordicon.com/iiueiwdd.json"
+                        trigger="hover"
+                        colors="primary:#81A594,secondary:#81a594"
+                        style="width:30px;height:30px">
+                    </lord-icon>
                 </a>
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png" id="fotoPerfilNav" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" id="dropdownUser1">
                         <li><a class="dropdown-item" href="..\Pages\newTask.html">Nuevo Proyecto...</a></li>
@@ -54,24 +154,37 @@ and open the template in the editor.
             <div class="col col-lg-4"></div>
             <div class="col-md-4 h-100">
                 <div class="card user-card h-100">
-                    <div class="card-header">
-<!--                        <h5>Profile</h5>-->
+                    <div class="card-header">                      
                     </div>
                     <div class="card-block">
                         <div class="user-image">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius" alt="User-Profile-Image">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png" class="img-radius" id="fotoPerfil" alt="User-Profile-Image" style="z-index: 11;">
+                            <div class="wrapper" style="">
+                                <div class="file-upload" id="file-upload">
+                                    <input type="file"/>
+                                    <i class="fa fa-arrow-up"></i>
+                                </div>
+                            </div>
                         </div>
-                        <h6 class="f-w-600 m-t-25 m-b-10">Guillem Ventura Vargas</h6>
-                        <p class="text-muted">Activo Ahora | Hombre | Nacimiento 02.06.1993</p>
-                        <hr><p class="text-muted m-t-15">Nivel de actividad:  87%</p>
+                        <h6 class="f-w-600 m-t-25 m-b-10" id="nombreUsuario">Sin nombre</h6>
+                        <p class="text-muted" id="fechaNacimiento">Fecha Nacimiento : Sin datos</p>
+                        
+                        <!--Panel de actividad--> 
+                        
+                        
+<!--                        <hr><p class="text-muted m-t-15">Nivel de actividad:  87%</p>
                         <ul class="list-unstyled activity-leval">
                             <li class="active"></li>
                             <li class="active"></li>
                             <li class="active"></li>
                             <li></li>
-                            <li></li>
+                            <li></li>-->
                         </ul>
-                        <div class="counter-block m-t-10 p-20" style="background-color: #00628B;">
+                        
+                        <!--Panel de tareas completadas--> 
+                        
+                        
+<!--                        <div class="counter-block m-t-10 p-20" style="background-color: #00628B;">
                             <div class="row">
                                 <div class="col-4"> 
                                     <i class="fa fa-comment" title="Tareas Creadas"></i>
@@ -85,8 +198,10 @@ and open the template in the editor.
                                     <p>189</p>
                                 </div>
                             </div>
-                        </div>
-                        <p class="m-t-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        </div>-->
+
+
+                        <p class="m-t-15 text-muted" id="bibliografiaUsuario">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                         <hr>
                         <div class="row justify-content-center user-social-link">
                             <div class="col-auto">

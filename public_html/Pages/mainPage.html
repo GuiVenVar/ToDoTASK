@@ -75,9 +75,9 @@ const usuarioAuth = getAuth();
 getAuth().onAuthStateChanged(function (user) {
     if (user) {
 
-
 const userRef = ref(db, 'Usuarios/' + getAuth().currentUser.uid);
 onValue(userRef, (snapshot) => {
+    console.log(snapshot.val())
     if(snapshot.val().PhotoPathUsuario != "\\"){
     fotoPerfil.src = snapshot.val().PhotoPathUsuario;    
 }else{
@@ -101,6 +101,8 @@ onValue(userRef, (snapshot) => {
 
             var divTareasPrioridadBaja = document.createElement("div");
             divTareasPrioridadBaja.id = "prioridadBaja";
+            
+
 
             var cajaTareas = document.createElement("a");
 
@@ -164,21 +166,23 @@ onValue(userRef, (snapshot) => {
 
                 snapshot.forEach(function (childSnap) {
 
-                    var bloqueTareas = document.createElement("a");
-                    bloqueTareas.href = "#";
-                    bloqueTareas.className = "list-group-item list-group-item-action py-3 lh-tight";
-                    bloqueTareas.id = "bloqueTareas";
-                    bloqueTareas.ariaCurrent = "true";
-                    bloqueTareas.style.zIndex = "1";
+                    var bloqueTarea = document.createElement("a");
+                    bloqueTarea.href = "#";
+                    bloqueTarea.className = "list-group-item list-group-item-action py-3 lh-tight";
+                    bloqueTarea.id = "bloqueTareas";
+                    bloqueTarea.ariaCurrent = "true";
+                    bloqueTarea.style.zIndex = "1";
+                    
 
                     if (childSnap.val().EstadoTarea == estadoTarea && childSnap.val().IDUsuario == usuarioAuth.uid || estadoTarea == "Publicas") {
 
+                        
                         var divTareaButtons = document.createElement("div");
                         divTareaButtons.className = "multi-button";
                         divTareaButtons.id = "multiButton";
 
-                        var btnHeart = document.createElement("button");
-                        btnHeart.className = "fas fa-heart";
+                        var btnFinish = document.createElement("button");
+                        btnFinish.className = "fa-solid fa-flag-checkered";
 
                         var btnComment = document.createElement("button");
                         btnComment.className = "fas fa-comment";
@@ -188,8 +192,9 @@ onValue(userRef, (snapshot) => {
 
                         var btnTrash = document.createElement("button");
                         btnTrash.className = "fas fa-trash";
+                        btnTrash.onclick = function(){deleteTask(childSnap.val().IDTarea);}
 
-                        divTareaButtons.appendChild(btnHeart);
+                        divTareaButtons.appendChild(btnFinish);
                         divTareaButtons.appendChild(btnComment);
                         divTareaButtons.appendChild(btnShare);
                         divTareaButtons.appendChild(btnTrash);
@@ -211,23 +216,32 @@ onValue(userRef, (snapshot) => {
                         var divDescripcionTarea = document.createElement("div");
                         divDescripcionTarea.className = "col-10 mb-1 small";
                         divDescripcionTarea.innerHTML += childSnap.val().DescripcionTarea;
+                        
+                        // Hidden input para pasar el ID de la tarea.
+                        
+//                        var idTarea = document.createElement("input");
+//                        idTarea.id = "IDTarea";                     
+//                        idTarea.name = "IDTarea";
+//                        idTarea.type = "hidden";
+//                        idTarea.value = childSnap.val().IDTarea;
+//                        bloqueTarea.appendChild(idTarea);
 
-                        bloqueTareas.appendChild(divTareaButtons);
-                        bloqueTareas.appendChild(divDetallesTareas);
-                        bloqueTareas.appendChild(divDescripcionTarea);
+                        bloqueTarea.appendChild(divTareaButtons);
+                        bloqueTarea.appendChild(divDetallesTareas);
+                        bloqueTarea.appendChild(divDescripcionTarea);
 
 
-                        bloqueTareas.onmouseover = function () {
+                        bloqueTarea.onmouseover = function () {
 
-                            bloqueTareas.style.backgroundColor = "aliceblue";
-                            bloqueTareas.firstChild.style.display = "block";
+                            bloqueTarea.style.backgroundColor = "aliceblue";
+                            bloqueTarea.firstChild.style.display = "block";
                         }
 
-                        bloqueTareas.onmouseout = function () {
+                        bloqueTarea.onmouseout = function () {
 
-                            bloqueTareas.style.backgroundColor = "white";
-                            bloqueTareas.firstChild.style.display = "none";
-                        }
+                            bloqueTarea.style.backgroundColor = "white";
+                            bloqueTarea.firstChild.style.display = "none";
+                        }           
 
                         var divider = document.createElement("div");
                         divider.className = "divider d-flex";
@@ -235,18 +249,18 @@ onValue(userRef, (snapshot) => {
 
                         switch (childSnap.val().PrioridadTarea) {
                             case "Alta":
-                                bloqueTareas.style.borderLeft = "5px solid red";
-                                divTareasPrioridadAlta.appendChild(bloqueTareas);
+                                bloqueTarea.style.borderLeft = "5px solid red";
+                                divTareasPrioridadAlta.appendChild(bloqueTarea);
                                 divTareasPrioridadAlta.appendChild(divider);
                                 break;
                             case "Media":
-                                bloqueTareas.style.borderLeft = "5px solid yellow";
-                                divTareasPrioridadMedia.appendChild(bloqueTareas);
+                                bloqueTarea.style.borderLeft = "5px solid yellow";
+                                divTareasPrioridadMedia.appendChild(bloqueTarea);
                                 divTareasPrioridadMedia.appendChild(divider);
                                 break;
                             case "Baja":
-                                bloqueTareas.style.borderLeft = "5px solid green";
-                                divTareasPrioridadBaja.appendChild(bloqueTareas);
+                                bloqueTarea.style.borderLeft = "5px solid green";
+                                divTareasPrioridadBaja.appendChild(bloqueTarea);
                                 divTareasPrioridadBaja.appendChild(divider);
                                 break;
                         }
@@ -254,7 +268,7 @@ onValue(userRef, (snapshot) => {
                 });
             });
 
-
+            
             divTareasGeneral.appendChild(divTareasPrioridadAlta);
             divTareasGeneral.appendChild(divTareasPrioridadMedia);
             divTareasGeneral.appendChild(divTareasPrioridadBaja);
@@ -342,8 +356,8 @@ onValue(userRef, (snapshot) => {
                         divTareaButtons.className = "multi-button";
                         divTareaButtons.id = "multiButton";
 
-                        var btnHeart = document.createElement("button");
-                        btnHeart.className = "fas fa-heart";
+                        var btnFinish = document.createElement("button");
+                        btnFinish.className = "fa-solid fa-flag-checkered";
 
                         var btnComment = document.createElement("button");
                         btnComment.className = "fas fa-comment";
@@ -354,7 +368,7 @@ onValue(userRef, (snapshot) => {
                         var btnTrash = document.createElement("button");
                         btnTrash.className = "fas fa-trash";
 
-                        divTareaButtons.appendChild(btnHeart);
+                        divTareaButtons.appendChild(btnFinish);
                         divTareaButtons.appendChild(btnComment);
                         divTareaButtons.appendChild(btnShare);
                         divTareaButtons.appendChild(btnTrash);
@@ -447,8 +461,23 @@ onValue(userRef, (snapshot) => {
             }
         }
 
+function deleteTask(IDTarea) {
+    if (confirm("Seguro quieres borrar => " + IDTarea + "?")) {
 
-        function deleteTask() { }
+
+        remove(ref(db, "Tareas/" + IDTarea))
+            .then(() => {
+                location.reload();
+            })
+            .catch((error) => {
+                alert("Ha fallado por : " + error.message);
+            });
+
+    }
+}
+        
+    
+    
         function completeTask() { }
         function setToPublic() { }
         function setToPrivate() { }
@@ -515,7 +544,7 @@ var firstchild = element.firstChild;
 
         <!----->
 
-        <a href="#" class="float">
+        <a href="..\Pages\newTask.html" class="float">
             <i class="fa fa-plus my-float"></i>
         </a>
 
