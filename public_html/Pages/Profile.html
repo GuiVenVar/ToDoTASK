@@ -23,102 +23,8 @@ and open the template in the editor.
 
 
     </head>
-    <body>
-        <script type="module">
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
-            import { DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-            import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-            const firebaseConfig = {
-            apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
-            databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
-            authDomain: "tododaw.firebaseapp.com",
-            projectId: "tododaw",
-            storageBucket: "tododaw.appspot.com",
-            messagingSenderId: "669151393033",
-            appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
-            measurementId: "G-XV3GDKTE6J"
-            };
-
-            // Initialize Firebase
-            const firebase = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(firebase);
-            const db = getDatabase();
-            const usuarioAuth = getAuth();
-            const fotoPerfil = document.getElementById("fotoPerfil");
-            const fotoPerfilNav = document.getElementById("fotoPerfilNav");
-            const nombreUsuario = document.getElementById("nombreUsuario");
-            const datosUsuario = document.getElementById("fechaNacimiento");
-            const bibliografiaUsuario = document.getElementById("bibliografiaUsuario");
-            const backgroundUploadPhoto = document.getElementById("file-upload");            
-            
-
-backgroundUploadPhoto.style.backgroundImage = "url(https://www.freeiconspng.com/uploads/upload-icon-30.png)";
-
-
-            getAuth().onAuthStateChanged(function (user) {
-            if (user) {
-            const userRef = ref(db, 'Usuarios/' + getAuth().currentUser.uid);
-            onValue(userRef, (snapshot) => {
-            if(snapshot.val().PhotoPathUsuario != "\\"){
-            const data = snapshot.val();
-            fotoPerfil.src = data.PhotoPathUsuario;  
-            fotoPerfilNav.src = data.PhotoPathUsuario;  
-            nombreUsuario.innerHTML = data.NombreUsuario + " " + data.ApellidosUsuario;
-            var myDate = new Date(data.EdadUsuario);  
-                       
-            var paragraphFNacimiento = document.createElement("p");
-            paragraphFNacimiento.innerHTML = "Fecha de nacimiento: " + (myDate.getDay()-1) +"/"+(myDate.getMonth()+1)+"/"+myDate.getFullYear();
-            
-            var paragraphTelefono = document.createElement("p");
-            paragraphTelefono.innerHTML = "Telefono: "+data.TelefonoUsuario;
-            
-            var paragraphEmpresa = document.createElement("p");
-            paragraphEmpresa.innerHTML = "Empresa "+data.EmpresaUsuario;
-            
-            var paragraphCargo = document.createElement("p");
-            paragraphCargo.innerHTML = "Cargo: "+data.CargoUsuario;
-            
-            datosUsuario.innerHTML = "";
-            datosUsuario.appendChild(paragraphFNacimiento);
-            datosUsuario.appendChild(paragraphTelefono);
-            datosUsuario.appendChild(paragraphEmpresa);
-            datosUsuario.appendChild(paragraphCargo);
-            
-            var paragraphBibliografia = document.createElement("p");
-            paragraphBibliografia.innerHTML = "Bibliografía: "+data.BibliografiaUsuaro;
-            
-            bibliografiaUsuario.appendChild(paragraphBibliografia);
-
-            }else{
-            fotoPerfil.src = "https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png";
-            fotoPerfilNav.src = "https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png";
-            }
-            });
-            } else {
-
-            alert("Usuario deslogueado !");
-            window.location.href = "..\\Index.html";
-            }
-            });
-
-        function UserSignOut() {
-
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                window.location.href = "..\\Index.html";
-            }).catch((error) => {
-                console.log("Error desconectando !");
-            });
-
-        }
-
-        var btnSignOut = document.getElementById("signOut");
-        btnSignOut.onclick = function () { UserSignOut() };
-
-        </script>
-
+    <body>   
+        
         <nav class="navbar navbar-light bg-light" id="navBar"> 
             <div class="container-fluid" id="positionNavbar">
                 <a class="navbar-brand" style="color: blue;" href="..\Pages\mainPage.html">
@@ -154,7 +60,16 @@ backgroundUploadPhoto.style.backgroundImage = "url(https://www.freeiconspng.com/
             <div class="col col-lg-4"></div>
             <div class="col-md-4 h-100">
                 <div class="card user-card h-100">
-                    <div class="card-header">                      
+                    <div class="card-header">      
+<lord-icon
+    id="btnEdit"
+    style="float:right;"
+    src="https://cdn.lordicon.com/wloilxuq.json"
+    trigger="hover"
+    colors="primary:#121331,secondary:#08a88a"
+    state="hover-1"
+    style="width:25px;height:25px">
+</lord-icon>
                     </div>
                     <div class="card-block">
                         <div class="user-image">
@@ -224,5 +139,11 @@ backgroundUploadPhoto.style.backgroundImage = "url(https://www.freeiconspng.com/
             </div>
             <div class="col col-lg-4"></div>
         </div>
+        
+    <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
+            <script type="module" src="../JavaScript/Profile/ProfilePageModuleJS.js"></script>    
+    <!-- Cargamos el javascript de la pagina -->
+    <script src="../JavaScript/Profile/ProfilePage.js"></script>
+
     </body>
 </html>

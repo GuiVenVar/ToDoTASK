@@ -34,73 +34,6 @@
     <body style="background-color: #E6E6DC;">
 
 
-
-        <!--       Llamada a los servicios Firebase :
-               Deploy server.
-               Deploy Database.
-               Deploy Auth.
-        -->
-              <script type="module">
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
-            import { DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-            import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
-            const firebaseConfig = {
-            apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
-            databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
-            authDomain: "tododaw.firebaseapp.com",
-            projectId: "tododaw",
-            storageBucket: "tododaw.appspot.com",
-            messagingSenderId: "669151393033",
-            appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
-            measurementId: "G-XV3GDKTE6J"
-            };
-
-            // Initialize Firebase
-            const firebase = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(firebase);
-            const db = getDatabase();
-            const usuarioAuth = getAuth();
-            const fotoPerfilNav = document.getElementById("fotoPerfilNav");
-
-            getAuth().onAuthStateChanged(function (user) {
-            if (user) {
-            const userRef = ref(db, 'Usuarios/' + getAuth().currentUser.uid);
-            onValue(userRef, (snapshot) => {
-            if(snapshot.val().PhotoPathUsuario != "\\"){
-            const data = snapshot.val(); 
-            fotoPerfilNav.src = data.PhotoPathUsuario;  
-  
-            }else{
-            fotoPerfil.src = "https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png";
-            fotoPerfilNav.src = "https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png";
-            }
-            });
-            } else {
-
-            alert("Usuario deslogueado !");
-            window.location.href = "..\\Index.html";
-            }
-            });
-
-        function UserSignOut() {
-
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                window.location.href = "..\\Index.html";
-            }).catch((error) => {
-                console.log("Error desconectando !");
-            });
-
-        }
-
-        var btnSignOut = document.getElementById("signOut");
-        btnSignOut.onclick = function () { UserSignOut() };
-
-        </script>
-
-        <!----->
         <nav class="navbar navbar-light bg-light" id="navBar"> 
             <div class="container-fluid" id="positionNavbar">
                 <a class="navbar-brand" style="color: blue;" href="..\Pages\mainPage.html">
@@ -133,7 +66,12 @@
             </div>
         </nav>
 
-
+        
+    <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
+    <script type="module" src="../JavaScript/NewTask/NewTaskPageModuleJS.js"></script>    
+    <!-- Cargamos el javascript de la pagina -->
+    <script src="../JavaScript/NewTask/NewTaskPage.js"></script>
+    
     </body>
 
 
