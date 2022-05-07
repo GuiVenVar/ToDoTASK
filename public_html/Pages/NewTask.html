@@ -31,18 +31,18 @@
 
         <title>Mi TO-DO Task</title>
     </head>
-    <body style="background-color: #E6E6DC;">
+    <body>
 
 
         <nav class="navbar navbar-light bg-light" id="navBar"> 
             <div class="container-fluid" id="positionNavbar">
-                <a class="navbar-brand" style="color: blue;" href="..\Pages\mainPage.html">
-                    <lord-icon
-                        src="https://cdn.lordicon.com/pijqcxrg.json"
-                        trigger="loop"
-                        colors="secondary:#e6e6dc"
-                        style="width:50px;height:50px">
-                    </lord-icon>
+                <a class="navbar-brand" style="color: blue;" href="..\Pages\MainPage.html">
+                    <!--                    <lord-icon
+                                            src="https://cdn.lordicon.com/pijqcxrg.json"
+                                            trigger="loop"
+                                            colors="secondary:#e6e6dc"
+                                            style="width:50px;height:50px">
+                                        </lord-icon>-->
                     <lord-icon
                         src="https://cdn.lordicon.com/iiueiwdd.json"
                         trigger="hover"
@@ -56,8 +56,8 @@
                         <img src="https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png" id="fotoPerfilNav" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" id="dropdownUser1">
-                        <li><a class="dropdown-item" href="..\Pages\newTask.html">Nuevo Proyecto...</a></li>
-                        <li><a class="dropdown-item" href="..\Pages\profile.html">Perfil</a></li>
+                        <li><a class="dropdown-item" href="..\Pages\NewTask.html">Nuevo Proyecto...</a></li>
+                        <li><a class="dropdown-item" href="..\Pages\Profile.html">Perfil</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#" id="signOut">Cerrar Sesión</a></li>
                     </ul>
@@ -65,14 +65,88 @@
 
             </div>
         </nav>
+        <div class="row h-100">            
+            <div class="col-md-4 w-100" style="/* background-color: black; */">
+                <div class="card user-card h-100" style="background-color:#f8f8ff;">
+                    <div class="card-header d-flex justify-content-between">  
 
-        
-    <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
-    <script type="module" src="../JavaScript/NewTask/NewTaskPageModuleJS.js"></script>    
-    <!-- Cargamos el javascript de la pagina -->
-    <script src="../JavaScript/NewTask/NewTaskPage.js"></script>
-    
-    </body>
+                        <label> Fecha de creación :  <input type="date" name="Fecha" placeholder="Fecha: XXXX" disabled="true" style=""> </label>
+
+                        <lord-icon
+                            id="btnCreate" 
+                            src="https://cdn.lordicon.com/jvihlqtw.json"
+                            trigger="hover"
+                            colors="primary:#109121,secondary:#08a88a"
+                            >
+                        </lord-icon>
+
+                    </div>
+
+                    <div class="card-block h-100" style="width: 100% !important;">
+
+                        <div class=".pt-5 text-end d-flex justify-content-between" style="">
+                            <div class="text-lg-start text-md-start" style="padding-left: 0.25rem;padding-top: 0.25rem;">
+                                <label type="text" name="iDTarea" placeholder="ID: XXXX" class="w-100">ID:XXXX</label>
+                            </div>
+                            <div style="padding-right:1rem;">
+                                <label for="visibility">Publica/Privada</label><br>
+                                <div class="float-end" id="divVisibility" style="width: fit-content;">
+                                    <input type="range" value="0" id="visibility" min="0" max="1" style="width:25px; height: 20px; pointer-events: none;">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="text-center form-outline mb-3" style="padding-left:50px; padding-right:50px;"><label for="tituloTarea" class="float-start fs-5 fw-bold">Titulo</label><br>
 
 
-</html>
+                            <br><input type="text" name="tituloTarea" class="pb-3 w-75 border border-secondary form-control form-control-lg border border-primary" placeholder="Titulo de la tarea">    
+                        </div>
+
+
+                        <br>
+                        <div class="text-center form-outline mb-3 h-50" style="padding-left:50px; padding-right:50px;">
+                            <label for="descripcionTarea" class="float-start fs-5 fw-bold">Descripción</label><br>
+                            <br><textarea name="descripcionTarea" placeholder="Descripcion de la tarea" class="h-100 pb-3 w-100 border border-secondary form-control form-control-lg border border-primary"></textarea> <br>
+                        </div>
+
+                        <!--
+                        AdjuntosTarea
+                        
+                        DescripcionTarea
+                        
+                        EstadoTarea
+                        
+                        FechaCreacionTarea
+                        
+                        FechaVencimientoTarea
+                        
+                        IDPadre
+                        
+                        IDTarea
+                        
+                        IDUsuario
+                        
+                        NombreTarea
+                        
+                        PrioridadTarea
+                        
+                        VisibilidadTarea
+                        
+                        -->
+                        <div class="file-drop-area file-drop-area d-flex justify-content-center mx-auto border border-secondary " style="background-color: beige;  margin-top: 5rem!important;">
+                            <span class="choose-file-button">Choose files</span>
+                            <span class="file-message">or drag and drop files here</span>
+                            <input class="file-input" type="file" multiple="">
+                        </div>
+                    </div>
+
+
+                    <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
+                    <script type="module" src="../JavaScript/NewTask/NewTaskPageModuleJS.js"></script>    
+                    <!-- Cargamos el javascript de la pagina -->
+                    <script src="../JavaScript/NewTask/NewTaskPage.js"></script>
+
+                    </body>
+
+
+                    </html>

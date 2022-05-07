@@ -99,8 +99,12 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
 .py-3 .multi-button  button[class="fas fa-heart"]{
     color:red;
 }
+.py-3 .multi-button  button[class="fa-solid fa-flag-checkered"]{
+    color:green;
+}
 .py-3 .multi-button  button[class="fas fa-trash"]{
     color:darkslategrey;
+     color:red;
 }
 
 #dropdownUser1{

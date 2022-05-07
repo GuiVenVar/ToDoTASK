@@ -24,16 +24,16 @@ and open the template in the editor.
 
     </head>
     <body>   
-        
+
         <nav class="navbar navbar-light bg-light" id="navBar"> 
             <div class="container-fluid" id="positionNavbar">
-                <a class="navbar-brand" style="color: blue;" href="..\Pages\mainPage.html">
-                    <lord-icon
+                <a class="navbar-brand" style="color: blue;" href="..\Pages\MainPage.html">
+<!--                    <lord-icon
                         src="https://cdn.lordicon.com/pijqcxrg.json"
                         trigger="loop"
                         colors="secondary:#e6e6dc"
                         style="width:50px;height:50px">
-                    </lord-icon>
+                    </lord-icon>-->
                     <lord-icon
                         src="https://cdn.lordicon.com/iiueiwdd.json"
                         trigger="hover"
@@ -47,8 +47,8 @@ and open the template in the editor.
                         <img src="https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png" id="fotoPerfilNav" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" id="dropdownUser1">
-                        <li><a class="dropdown-item" href="..\Pages\newTask.html">Nuevo Proyecto...</a></li>
-                        <li><a class="dropdown-item" href="..\Pages\profile.html">Perfil</a></li>
+                        <li><a class="dropdown-item" href="..\Pages\NewTask.html">Nuevo Proyecto...</a></li>
+                        <li><a class="dropdown-item" href="..\Pages\Profile.html">Perfil</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#" id="signOut">Cerrar Sesión</a></li>
                     </ul>
@@ -56,67 +56,69 @@ and open the template in the editor.
 
             </div>
         </nav>
+        
+        
         <div class="row h-100">
-            <div class="col col-lg-4"></div>
+            <div class="col col-lg-4" style="background-color:#f8f8ff;"></div>
             <div class="col-md-4 h-100">
                 <div class="card user-card h-100">
                     <div class="card-header">      
-<lord-icon
-    id="btnEdit"
-    style="float:right;"
-    src="https://cdn.lordicon.com/wloilxuq.json"
-    trigger="hover"
-    colors="primary:#121331,secondary:#08a88a"
-    state="hover-1"
-    style="width:25px;height:25px">
-</lord-icon>
+                        <lord-icon
+                            id="btnEdit"
+                            style="float:right;"
+                            src="https://cdn.lordicon.com/wloilxuq.json"
+                            trigger="hover"
+                            colors="primary:#121331,secondary:#08a88a"
+                            state="hover-1"
+                            style="width:25px;height:25px">
+                        </lord-icon>
                     </div>
                     <div class="card-block">
                         <div class="user-image">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png" class="img-radius" id="fotoPerfil" alt="User-Profile-Image" style="z-index: 11;">
                             <div class="wrapper" style="">
-                                <div class="file-upload" id="file-upload">
-                                    <input type="file"/>
+                                <div class="file-upload" id="xxx">
+                                    <input type="file" accept="image/*" id="file-upload"/>
                                     <i class="fa fa-arrow-up"></i>
                                 </div>
                             </div>
                         </div>
-                        <h6 class="f-w-600 m-t-25 m-b-10" id="nombreUsuario">Sin nombre</h6>
-                        <p class="text-muted" id="fechaNacimiento">Fecha Nacimiento : Sin datos</p>
-                        
+                        <h6 class="f-w-600 m-t-25 m-b-10" id="nombreUsuario">Nombre: Cargando...</h6>
+                        <p class="text-muted" id="fechaNacimiento">Fecha Nacimiento : Cargando...</p>
+
                         <!--Panel de actividad--> 
-                        
-                        
-<!--                        <hr><p class="text-muted m-t-15">Nivel de actividad:  87%</p>
-                        <ul class="list-unstyled activity-leval">
-                            <li class="active"></li>
-                            <li class="active"></li>
-                            <li class="active"></li>
-                            <li></li>
-                            <li></li>-->
-                        </ul>
-                        
+
+
+                        <!--                        <hr><p class="text-muted m-t-15">Nivel de actividad:  87%</p>
+                                                <ul class="list-unstyled activity-leval">
+                                                    <li class="active"></li>
+                                                    <li class="active"></li>
+                                                    <li class="active"></li>
+                                                    <li></li>
+                                                    <li></li>
+                                              </ul>-->
+
                         <!--Panel de tareas completadas--> 
-                        
-                        
-                        <div class="counter-block m-t-10 p-20" style="background-color: #00628B;">
-                            <div class="row">
-                                <div class="col-4"> 
-                                    <i class="fa fa-comment" title="Tareas Creadas"></i>
-                                    <p>1256</p>
-                                </div>
-                                <div class="col-4">
-                                    <i class="fa fa-user" title="Tareas Completadas"></i>
-                                    <p>8562</p>
-                                </div><div class="col-4" title="Tareas Publicas">
-                                    <i class="fa fa-suitcase"></i>
-                                    <p>189</p>
-                                </div>
-                            </div>
-                        </div>
 
 
-                        <p class="m-t-15 text-muted" id="bibliografiaUsuario">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <!--                        <div class="counter-block m-t-10 p-20" style="background-color: #00628B;">
+                                                    <div class="row">
+                                                        <div class="col-4"> 
+                                                            <i class="fa fa-comment" title="Tareas Creadas"></i>
+                                                            <p>1256</p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <i class="fa fa-user" title="Tareas Completadas"></i>
+                                                            <p>8562</p>
+                                                        </div><div class="col-4" title="Tareas Publicas">
+                                                            <i class="fa fa-suitcase"></i>
+                                                            <p>189</p>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+
+
+                        <p class="m-t-15 text-muted" id="bibliografiaUsuario">Cargando...</p>
                         <hr>
                         <div class="row justify-content-center user-social-link">
                             <div class="col-auto">
@@ -137,13 +139,13 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
-            <div class="col col-lg-4"></div>
+            <div class="col col-lg-4" style="background-color:#f8f8ff;"></div>
         </div>
-        
-    <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
-            <script type="module" src="../JavaScript/Profile/ProfilePageModuleJS.js"></script>    
-    <!-- Cargamos el javascript de la pagina -->
-    <script src="../JavaScript/Profile/ProfilePage.js"></script>
+
+        <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
+        <script type="module" src="../JavaScript/Profile/ProfilePageModuleJS.js"></script>    
+        <!-- Cargamos el javascript de la pagina -->
+        <script src="../JavaScript/Profile/ProfilePage.js"></script>
 
     </body>
 </html>

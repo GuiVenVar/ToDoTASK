@@ -17,3 +17,11 @@ function removeButtonHover(element) {
     element.style.backgroundColor = "white";
 
 }
+
+var fotoPerfil = document.getElementById("fotoPerfil");
+fotoPerfil.onerror = () => {
+    fotoPerfil.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+    console.log("ha fallado")
+};
+
+

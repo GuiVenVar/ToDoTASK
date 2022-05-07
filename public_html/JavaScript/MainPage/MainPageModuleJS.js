@@ -5,17 +5,14 @@
  */
 
 
+
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
 import { DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
 
-// import { } from 'firebase/app-check';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
     databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
@@ -28,24 +25,27 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+// Inicialización de Firebase
 const firebase = initializeApp(firebaseConfig);
+// Estadisticas y analiticas de Firebase
 const analytics = getAnalytics(firebase);
+// BBDD - General
 const db = getDatabase();
+// Auth - Usuario
+const auth = getAuth();
+// Firebase Storage
+const storage = getStorage();
+
 const loader = document.getElementById("loader");
 const fotoPerfil = document.getElementById("fotoPerfil");
-const usuarioAuth = getAuth();
 
 getAuth().onAuthStateChanged(function (user) {
     if (user) {
 
         const userRef = ref(db, 'Usuarios/' + getAuth().currentUser.uid);
         onValue(userRef, (snapshot) => {
-            console.log(snapshot.val())
-            if (snapshot.val().PhotoPathUsuario != "\\") {
-                fotoPerfil.src = snapshot.val().PhotoPathUsuario;
-            } else {
-                fotoPerfil.src = "https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png";
-            }
+
+            loadProfilePicture();
         });
 
         function loadData(element, estadoTarea) {
@@ -136,8 +136,7 @@ getAuth().onAuthStateChanged(function (user) {
                     bloqueTarea.ariaCurrent = "true";
                     bloqueTarea.style.zIndex = "1";
 
-
-                    if (childSnap.val().EstadoTarea == estadoTarea && childSnap.val().IDUsuario == usuarioAuth.uid || estadoTarea == "Publicas") {
+                    if (childSnap.val().EstadoTarea == estadoTarea || childSnap.val().IDUsuario == auth.uid || estadoTarea == "Publicas") {
 
 
                         var divTareaButtons = document.createElement("div");
@@ -155,7 +154,7 @@ getAuth().onAuthStateChanged(function (user) {
 
                         var btnTrash = document.createElement("button");
                         btnTrash.className = "fas fa-trash";
-                        btnTrash.onclick = function () {
+                        btnTrash.onclick = () => {
                             deleteTask(childSnap.val().IDTarea);
                         }
 
@@ -196,13 +195,13 @@ getAuth().onAuthStateChanged(function (user) {
                         bloqueTarea.appendChild(divDescripcionTarea);
 
 
-                        bloqueTarea.onmouseover = function () {
+                        bloqueTarea.onmouseover = () => {
 
                             bloqueTarea.style.backgroundColor = "aliceblue";
                             bloqueTarea.firstChild.style.display = "block";
                         }
 
-                        bloqueTarea.onmouseout = function () {
+                        bloqueTarea.onmouseout = () => {
 
                             bloqueTarea.style.backgroundColor = "white";
                             bloqueTarea.firstChild.style.display = "none";
@@ -361,13 +360,13 @@ getAuth().onAuthStateChanged(function (user) {
                         bloqueTareas.appendChild(divDescripcionTarea);
 
 
-                        bloqueTareas.onmouseover = function () {
+                        bloqueTareas.onmouseover = () => {
 
                             bloqueTareas.style.backgroundColor = "aliceblue";
                             bloqueTareas.firstChild.style.display = "block";
                         }
 
-                        bloqueTareas.onmouseout = function () {
+                        bloqueTareas.onmouseout = () => {
 
                             bloqueTareas.style.backgroundColor = "white";
                             bloqueTareas.firstChild.style.display = "none";
@@ -466,22 +465,22 @@ getAuth().onAuthStateChanged(function (user) {
         }
 
         var btnSignOut = document.getElementById("signOut");
-        btnSignOut.onclick = function () {
+        btnSignOut.onclick = () => {
             UserSignOut()
         };
 
         var eTablinkPendiente = document.getElementById("tabLinkPendientes");
-        eTablinkPendiente.onclick = function () {
+        eTablinkPendiente.onclick = () => {
             openTasks(eTablinkPendiente, 'tabLinkPendientes');
         };
 
         var eTablinkCompletadas = document.getElementById("tabLinkCompletadas");
-        eTablinkCompletadas.onclick = function () {
+        eTablinkCompletadas.onclick = () => {
             openTasks(eTablinkCompletadas, 'tabLinkCompletadas');
         };
 
         var eTablinkPublicas = document.getElementById("tabLinkPublicas");
-        eTablinkPublicas.onclick = function () {
+        eTablinkPublicas.onclick = () => {
             openTasks(eTablinkPublicas, 'tabLinkPublicas');
         };
 
@@ -494,4 +493,21 @@ getAuth().onAuthStateChanged(function (user) {
         window.location.href = "..\\Index.html";
     }
 });
+
+function loadProfilePicture() {
+
+    getDownloadURL(storageRef(storage, 'gs://tododaw.appspot.com/photoUser/' + auth.currentUser.uid + ".jpg"))
+            .then((url) => {
+
+                fotoPerfil.src = url;
+                console.log("Cargadas");
+
+            })
+            .catch((error) => {
+                console.log("Error cargando datos loadProfilePicture => " + error.message);
+            }).finally(() => {
+
+    });
+    
+}
 

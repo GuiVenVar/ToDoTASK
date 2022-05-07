@@ -42,7 +42,7 @@ signInWithEmailAndPassword(auth, formEmail.value, formPwd.value)
         .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-                window.location.href = "Pages\\mainPage.html";
+                window.location.href = "Pages\\MainPage.html";
     })
     .catch((error) => {
                 const errorCode = error.code;
@@ -165,9 +165,8 @@ signInWithEmailAndPassword(auth, formEmail.value, formPwd.value)
                                 VisibilidadUsuario: false
     })
     .then(() => {
-                                if (getAuth().currentUser) {
-                        alert(getAuth().currentUser);
-                                window.location.href = "Pages\\mainPage.html";
+                                if (getAuth().currentUser) {                      
+                                window.location.href = "Pages\\MainPage.html";
     } else {
                                 alert("No se ha establecido un usuario");
     }
@@ -192,7 +191,7 @@ signInWithEmailAndPassword(auth, formEmail.value, formPwd.value)
                         const auth = getAuth();
                                 sendPasswordResetEmail(auth,
                                         textEmail.value)
-                                .then(function () {
+                                .then( () => {
                                 alert("Se ha enviado un correo de recuperación !")
     })
     .catch(function (error) {
