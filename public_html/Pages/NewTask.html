@@ -33,7 +33,6 @@
     </head>
     <body>
 
-
         <nav class="navbar navbar-light bg-light" id="navBar"> 
             <div class="container-fluid" id="positionNavbar">
                 <a class="navbar-brand" style="color: blue;" href="..\Pages\MainPage.html">
@@ -43,17 +42,13 @@
                                             colors="secondary:#e6e6dc"
                                             style="width:50px;height:50px">
                                         </lord-icon>-->
-                    <lord-icon
-                        src="https://cdn.lordicon.com/iiueiwdd.json"
-                        trigger="hover"
-                        colors="primary:#81A594,secondary:#81a594"
-                        style="width:30px;height:30px">
+                    <lord-icon src="https://cdn.lordicon.com/iiueiwdd.json" trigger="hover" colors="primary:#81A594,secondary:#81a594" style="width:30px;height:30px">
                     </lord-icon>
                 </a>
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png" id="fotoPerfilNav" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/tododaw.appspot.com/o/photoUser%2F3lKgi8MdQHRCFmhsUZGiTRYOr9h2.jpg?alt=media&amp;token=3b336128-c642-4c14-8b5d-64930ba86fd4" id="fotoPerfilNav" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" id="dropdownUser1">
                         <li><a class="dropdown-item" href="..\Pages\NewTask.html">Nuevo Proyecto...</a></li>
@@ -68,25 +63,34 @@
         <div class="row h-100">            
             <div class="col-md-4 w-100" style="/* background-color: black; */">
                 <div class="card user-card h-100" style="background-color:#f8f8ff;">
-                    <div class="card-header d-flex justify-content-between">  
+                    <div class="card-header d-flex bd-highlight align-items-center">  
 
-                        <label> Fecha de creación :  <input type="date" name="Fecha" placeholder="Fecha: XXXX" disabled="true" style=""> </label>
+                        <div class="bd-highlight&quot;">
+                            <div>
+                                <label class="d-none d-sm-block float-start"> Fecha de creación &nbsp; </label>  
+                                <input type="date" id="fechaHoy" name="Fecha" disabled="" style="">
+                            </div>
+                        </div> 
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="bd-highlight">
+                            <div>
+                                <label class="d-none d-sm-block float-start"> Fecha de finalizacion &nbsp; </label>  
+                                <input type="date" id="fechaFinalizacion" name="Fecha" style="">
+                            </div>
+                        </div>
 
-                        <lord-icon
-                            id="btnCreate" 
-                            src="https://cdn.lordicon.com/jvihlqtw.json"
-                            trigger="hover"
-                            colors="primary:#109121,secondary:#08a88a"
-                            >
-                        </lord-icon>
-
+                        <div class="ms-auto bd-highlight">
+                            <lord-icon id="btnCreate" class="float-end border border-success" src="https://cdn.lordicon.com/jvihlqtw.json" trigger="hover" colors="primary:#198754,secondary:#198754" style="/* border: 1px solid #1bff2d; */">
+                            </lord-icon>
+                        </div>
                     </div>
 
                     <div class="card-block h-100" style="width: 100% !important;">
 
                         <div class=".pt-5 text-end d-flex justify-content-between" style="">
-                            <div class="text-lg-start text-md-start" style="padding-left: 0.25rem;padding-top: 0.25rem;">
-                                <label type="text" name="iDTarea" placeholder="ID: XXXX" class="w-100">ID:XXXX</label>
+                            <div class="text-lg-start text-md-start d-flex " style="padding-left: 0.25rem;padding-top: 0.25rem;">
+                                <label type="text" class="">ID:&nbsp;</label>
+                                <label type="text" id="idTarea" name="idTarea" placeholder="Cargando" class="w-100">º5\H¡Kh_81ºP!b5IU{+1</label>
                             </div>
                             <div style="padding-right:1rem;">
                                 <label for="visibility">Publica/Privada</label><br>
@@ -140,13 +144,16 @@
                         </div>
                     </div>
 
-
                     <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
                     <script type="module" src="../JavaScript/NewTask/NewTaskPageModuleJS.js"></script>    
                     <!-- Cargamos el javascript de la pagina -->
                     <script src="../JavaScript/NewTask/NewTaskPage.js"></script>
+                    
+                </div>
+            </div>
+        </div>
+    
+    </body>
 
-                    </body>
 
-
-                    </html>
+</html>
