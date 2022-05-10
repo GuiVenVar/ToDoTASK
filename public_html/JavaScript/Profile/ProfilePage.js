@@ -8,8 +8,11 @@ var fotoPerfilNav = document.getElementById("fotoPerfilNav");
 var fotoPerfil = document.getElementById("fotoPerfil");
 
 fotoPerfilNav.onerror = () => {
+    
+    console.log("Ha fallado la carga del Nav");
     fotoPerfilNav.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
 }
 fotoPerfil.onerror = () => {
+    console.log("Ha fallado la carga del perfil");
     fotoPerfil.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
 }

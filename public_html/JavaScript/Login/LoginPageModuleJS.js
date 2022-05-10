@@ -13,7 +13,6 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, se
 from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 import { DataSnapshot, getDatabase, ref, get, set, child, update, remove, onValue }
 from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-
 const firebaseConfig = {
     apiKey: "AIzaSyCw4VX9XmPQuTPclMsoQn3No05MhqckG0A",
     databaseURL: "https://tododaw-default-rtdb.europe-west1.firebasedatabase.app",
@@ -24,21 +23,18 @@ const firebaseConfig = {
     appId: "1:669151393033:web:08c29e64571ab03b8f0fd8",
     measurementId: "G-XV3GDKTE6J"
 };
-
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebase);
 const db = getDatabase();
 const auth = getAuth();
-
 var btnLogin = document.getElementById("btnLogin");
 var btnRegister = document.getElementById("btnRegister");
 var btnSendForgot = document.getElementById("btnSendForgot");
 var btnFb = document.getElementById("fbBtn");
-
 function logIn() {
 
-    
+
     var formEmail = document.getElementById("formEmail");
     var formPwd = document.getElementById("formPwd");
     if (formEmail.value != "" && formPwd != "") {
@@ -73,7 +69,6 @@ function registerUser() {
     var textPwd = document.getElementById("passwordRegistro");
     var textRetypePwd = document.getElementById("rtPasswordRegistro");
     var isVerified = true;
-    
     if (textNombre.value == "") {
         textNombre.style.border = "1px solid red";
         isVerified = false;
@@ -154,8 +149,8 @@ function registerUser() {
                     // Signed in
                     const user = userCredential.user;
                     // Aqui añadimos los datos del usuario como dato en BBDD
-                    console.log("USERID " + user.uid);
-                    set(ref(getDatabase(), 'Usuarios/' + user.uid), {
+                    set(ref(db, "Usuarios/" + user.uid), {
+
                         ApellidosUsuario: document.getElementById("apellidosRegistro").value,
                         BibliografiaUsuario: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a lacus posuere odio sollicitudin ornare. Aenean lectus tellus, porttitor convallis venenatis non, pulvinar eu arcu. Etiam eget velit pulvinar, eleifend enim varius, tincidunt ipsum. In ut ornare nulla. Vestibulum et sem in felis suscipit faucibus. Etiam eu elit lobortis, tincidunt diam vel, tristique magna. Pellentesque ullamcorper neque at lacinia sollicitudin. Aenean felis eros, auctor a magna quis, fermentum lacinia enim. Etiam bibendum arcu at mi vulputate, at placerat sapien fringilla. In hac habitasse platea dictumst. Suspendisse sit amet lobortis mauris, eget rutrum nisi. Curabitur volutpat mi facilisis, euismod ligula in, ornare lorem.",
                         CargoUsuario: document.getElementById("cargoEmpresaRegistro").value,
@@ -169,11 +164,7 @@ function registerUser() {
                         VisibilidadUsuario: false
                     })
                             .then(() => {
-                                if (auth.currentUser) {
-                                    window.location.href = "Pages\\MainPage.html";
-                                } else {
-                                    alert("No se ha establecido un usuario");
-                                }
+                               window.location = "Pages\\MainPage.html";
                             });
                 })
                 .catch((error) => {
@@ -208,33 +199,16 @@ function restorePassword() {
 
 function loginFacebook() {
 
-    // Sign in using a popup.
     var provider = new FacebookAuthProvider();
-    
     provider.addScope('user_birthday');
     signInWithPopup(auth, provider).then(function (result) {
-        // This gives you a Facebook Access Token.
         var token = result.credential.accessToken;
-        // The signed-in user info.
         var user = result.user;
     });
 }
 
-function isLogged() {
-    auth.onAuthStateChanged(function (user) {
-        if (user) {
-            console.log("isLogged True");
-            window.location.href = "\Pages\\MainPage.html";
-        }
-        else{
-            console.log("isLogged False");
-        }
-    });
-}
 
 btnFb.onclick = loginFacebook;
 btnLogin.onclick = logIn;
 btnRegister.onclick = registerUser;
 btnSendForgot.onclick = restorePassword;
-
-isLogged();

@@ -63,9 +63,9 @@
         <div class="row h-100">            
             <div class="col-md-4 w-100" style="/* background-color: black; */">
                 <div class="card user-card h-100" style="background-color:#f8f8ff;">
-                    <div class="card-header d-flex bd-highlight align-items-center">  
 
-                        <div class="bd-highlight&quot;">
+                    <div class="card-header d-flex bd-highlight align-items-center">  
+                        <div class="bd-highlight">
                             <div>
                                 <label class="d-none d-sm-block float-start"> Fecha de creación &nbsp; </label>  
                                 <input type="date" id="fechaHoy" name="Fecha" disabled="" style="">
@@ -90,7 +90,7 @@
                         <div class=".pt-5 text-end d-flex justify-content-between" style="">
                             <div class="text-lg-start text-md-start d-flex " style="padding-left: 0.25rem;padding-top: 0.25rem;">
                                 <label type="text" class="">ID:&nbsp;</label>
-                                <label type="text" id="idTarea" name="idTarea" placeholder="Cargando" class="w-100">º5\H¡Kh_81ºP!b5IU{+1</label>
+                                <label type="text" id="idTarea" name="idTarea" placeholder="Cargando" class="w-100"></label>
                             </div>
                             <div style="padding-right:1rem;">
                                 <label for="visibility">Publica/Privada</label><br>
@@ -103,56 +103,36 @@
                         <div class="text-center form-outline mb-3" style="padding-left:50px; padding-right:50px;"><label for="tituloTarea" class="float-start fs-5 fw-bold">Titulo</label><br>
 
 
-                            <br><input type="text" name="tituloTarea" class="pb-3 w-75 border border-secondary form-control form-control-lg border border-primary" placeholder="Titulo de la tarea">    
+                            <br><input type="text" id="tituloTarea" name="tituloTarea" class="pb-3 w-75 border border-secondary form-control form-control-lg border border-primary" placeholder="Titulo de la tarea">    
                         </div>
 
 
                         <br>
                         <div class="text-center form-outline mb-3 h-50" style="padding-left:50px; padding-right:50px;">
                             <label for="descripcionTarea" class="float-start fs-5 fw-bold">Descripción</label><br>
-                            <br><textarea name="descripcionTarea" placeholder="Descripcion de la tarea" class="h-100 pb-3 w-100 border border-secondary form-control form-control-lg border border-primary"></textarea> <br>
+                            <br><textarea id="descripcionTarea" name="descripcionTarea" placeholder="Descripcion de la tarea" class="h-100 pb-3 w-100 border border-secondary form-control form-control-lg border border-primary"></textarea> <br>
+                            <div class="col-md-2">
+                                <label for="selectPrioridad" class="form-label">Prioridad</label>
+                                <select class="form-select" id="selectPrioridad" required>
+                                    <option selected disabled value="">Selecciona la prioridad</option>
+                                    <option value="Baja">Baja</option>
+                                    <option value="Media">Media</option>
+                                    <option value="Alta">Alta</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <!--
-                        AdjuntosTarea
-                        
-                        DescripcionTarea
-                        
-                        EstadoTarea
-                        
-                        FechaCreacionTarea
-                        
-                        FechaVencimientoTarea
-                        
-                        IDPadre
-                        
-                        IDTarea
-                        
-                        IDUsuario
-                        
-                        NombreTarea
-                        
-                        PrioridadTarea
-                        
-                        VisibilidadTarea
-                        
-                        -->
-                        <div class="file-drop-area file-drop-area d-flex justify-content-center mx-auto border border-secondary " style="background-color: beige;  margin-top: 5rem!important;">
-                            <span class="choose-file-button">Choose files</span>
-                            <span class="file-message">or drag and drop files here</span>
-                            <input class="file-input" type="file" multiple="">
-                        </div>
+                        <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
+                        <script type="module" src="../JavaScript/NewTask/NewTaskPageModuleJS.js"></script>    
+                        <!-- Cargamos el javascript de la pagina -->
+                        <script src="../JavaScript/NewTask/NewTaskPage.js"></script>
+
                     </div>
 
-                    <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
-                    <script type="module" src="../JavaScript/NewTask/NewTaskPageModuleJS.js"></script>    
-                    <!-- Cargamos el javascript de la pagina -->
-                    <script src="../JavaScript/NewTask/NewTaskPage.js"></script>
-                    
                 </div>
             </div>
-        </div>
-    
+
+
     </body>
 
 
