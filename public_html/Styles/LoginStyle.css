@@ -1,0 +1,84 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12-abr-2022, 17:25:05
+    Author     : Guillem Ventura
+*/
+
+html , body , section{
+    height: 100%;
+    overflow: hidden;
+
+}
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+.h-custom {
+    height: calc(100% - 73px);
+}
+
+div[class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary"]{
+    background-color: #00628B !important;
+    padding-bottom: 100% !important;
+}
+div[class="container-fluid h-custom"]{
+
+    background-color: #f8f8ff;
+    
+}
+
+/*Register*/
+
+.container{
+    top: 25%;
+    position: fixed;
+    display:none;
+}
+
+.centered-form{
+    margin-top: 60px;
+    text-align: center;
+}
+
+.centered-form .panel{
+
+    background: rgba(255, 255, 255, 1);
+    box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px 9999px;
+    width: max-content;
+}
+
+
+.panel-title input[type="button"]{
+    float:right;
+}
+
+.red-input {
+    border: 1px solid red;
+}
+
+#containerForgot{
+    top: 27%;    
+    display:none;
+}
+
+#containerRegister {    
+    display:none;
+}
+
+/*Media*/
+
+
+@media screen and (min-width: 0px) and (max-width:449px){
+    html , body , section{
+        height: 98%;
+        overflow: visible;
+    }
+}

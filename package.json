@@ -1,8 +1,20 @@
 {
     "name": "Proyecto_TODO",
     "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
     "author": "Guillem",
     "contributors": [],
-    "dependencies": {}
+    "dependencies": {
+        "compressorjs": "^1.1.1",
+        "debug": "^4.3.4",
+        "firebase": "^9.8.0",
+        "firebase-tools": "^10.8.0",
+        "har-validator": "^5.1.5"
+    }
 }
