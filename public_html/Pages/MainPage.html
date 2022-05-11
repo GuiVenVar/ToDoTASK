@@ -32,8 +32,23 @@
         <title>Mi TO-DO Task</title>
     </head>
     <body class="overflow-auto" style="background-color:#f8f8ff;">
-
-
+        <!--TOAST-->
+        <div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts " style="z-index:9999;">
+            <div class="toast-container position-absolute p-3 top-0 end-0" id="toastPlacement">
+                <div class="toast" id="toast">
+                    <div class="toast-header">
+                        <i class="fa-solid fa-circle-info rounded me-2"></i>
+                        <strong class="me-auto" id="toastTextoCabecera">Bootstrap</strong>
+                        <small id="toastTiempoToast">11 mins ago</small>
+                        <button id="toastBtnCerrar" type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body" id="toastText">
+                        Hello, world! This is a toast message.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END TOAST-->
 
         <a href="..\Pages\NewTask.html" class="float">
             <i class="fa fa-plus my-float"></i>
@@ -79,6 +94,7 @@
             </div>
         </nav>
 
+
         <!-- Tab content -->
         <div id="Pendientes" class="tabcontent overflow-auto">  
 
@@ -93,11 +109,8 @@
         </div>
 
 
-
-    <!-- Cargamos el modulo de firebase con toda la configuración para la pagina -->
-    <script type="module" src="../JavaScript/MainPage/MainPageModuleJS.js"></script>    
-    <!-- Cargamos el javascript de la pagina -->
-    <script src="../JavaScript/MainPage/MainPage.js"></script>
+        <!-- Cargamos el javascript de la pagina -->
+        <script type="module" src="../JavaScript/MainPage/MainPage.js"></script>
 
     </body>
 

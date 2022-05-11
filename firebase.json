@@ -24,7 +24,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/Index.html"
+        "destination": "/Pages/MainPage.html"
       }
     ]
   },

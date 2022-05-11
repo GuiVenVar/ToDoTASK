@@ -38,7 +38,7 @@ div[class="container-fluid h-custom"]{
 /*Register*/
 
 .container{
-    top: 0%;
+    top: 25%;
     position: fixed;
     display:none;
 }
