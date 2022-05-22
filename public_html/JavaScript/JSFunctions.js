@@ -6,28 +6,47 @@
 
 import { firebase, analytics, auth, db, storage} from "./Connection/BBDDFunctions.js"
 
+        export  function parseDate(stringData) {
 
-export  function parseDate(stringData) {
+            var myDate = new Date(stringData);
 
-    var myDate = new Date(stringData);
+            var myDateString = myDate.getFullYear() + "-";
 
-    var myDateString = myDate.getFullYear() + "-";
+            if (myDate.getMonth().toString().length == 1) {
 
-    if (myDate.getMonth().toString().length == 1) {
+                myDateString += "0" + (myDate.getMonth() + 1) + "-";
+            } else {
 
-        myDateString += "0" + (myDate.getMonth() + 1) + "-";
+                myDateString += (myDate.getMonth() + 1) + "-";
+            }
+            if (myDate.getDate().toString().length == 1) {
+
+                myDateString += ("0" + myDate.getDate());
+
+            } else {
+                myDateString += myDate.getDate();
+            }
+            return myDateString;
+        }
+
+export function parseHour(stringData) {
+
+    var newData = "";
+
+    if (stringData.split(":")[0].length == 1) {
+        newData = "0" + stringData.split(":")[0];
     } else {
-
-        myDateString += (myDate.getMonth() + 1) + "-";
+        newData = stringData.split(":")[0];
     }
-    if (myDate.getDate().toString().length == 1) {
-
-        myDateString += ("0" + myDate.getDate());
-
+    newData += ":";
+    if (stringData.split(":")[1].length == 1) {
+        newData += "0" + stringData.split(":")[1];
     } else {
-        myDateString += myDate.getDate();
+        newData += stringData.split(":")[1];
     }
-    return myDateString;
+
+    return newData;
+
 }
 
 export function generateToast(titulo, descripcion, fecha, tiempoEjecucion) {
@@ -95,4 +114,45 @@ export function generatePushID() {
         throw new Error('Length should be 20.');
     }
     return id;
+}
+
+export function generateLoader() {
+
+    var divLoaderGeneral = document.createElement("div");
+    divLoaderGeneral.className = "container mw-100 w-100 h-100";
+    divLoaderGeneral.id = "loader";
+    divLoaderGeneral.style.position = "absolute";
+
+    var divGeneralContainer = document.createElement("div");
+    divGeneralContainer.className = "row centered-form mw-100 w-100 h-100 d-flex align-content-sm-around align-content-md-around";
+    var divLoaderIzquierdo = document.createElement("div");
+    divLoaderIzquierdo.className = "col-sm-3 col-md-4 col-sm-offset-2 col-md-offset-4";
+
+    var divLoaderCentral = document.createElement("div");
+    divLoaderCentral.className = "col-xs-12 col-sm-6 col-md-4 col-sm-offset-2 col-md-offset-4 d-flex justify-content-around align-content-around flex-wrap";
+    var divLoaderDerecho = document.createElement("div");
+    divLoaderDerecho.className = "col-sm-3 col-md-4 col-sm-offset-2 col-md-offset-4";
+
+    var loaderIcon = document.createElement("div");
+    loaderIcon.className = "loader";
+    loaderIcon.style.zIndex = "999";
+    loaderIcon.style.position = "absolute";
+
+
+    divLoaderCentral.appendChild(loaderIcon);
+    divGeneralContainer.appendChild(divLoaderIzquierdo);
+    divGeneralContainer.appendChild(divLoaderCentral);
+    divGeneralContainer.appendChild(divLoaderDerecho);
+    divLoaderGeneral.appendChild(divGeneralContainer);
+
+    return divLoaderGeneral;
+
+}
+
+export function preventCodeInjection(value) {
+
+    value = value.replace("<", "&lt;");
+    value = value.replace(">", "&gt;");
+
+    return value;
 }

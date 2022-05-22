@@ -7,7 +7,9 @@
 
 import { ref as databaseRef, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 import { firebase, analytics, auth, db, storage, UserSignOut, loadProfilePicture, loadTask, changeData} from "../Connection/BBDDFunctions.js";
-import { parseDate, generateToast, generatePushID} from "../JSFunctions.js";
+import { parseDate,parseHour, generateToast, generatePushID, preventCodeInjection} from "../JSFunctions.js";
+import { Tareas } from "../Models/Tareas.js";
+import { Usuarios } from "../Models/Usuarios.js";
 
 
 const fotoPerfil = document.getElementById("fotoPerfilNav");
@@ -29,6 +31,7 @@ const divBtnVisibility = document.getElementById("divVisibility");
 const selectPrioridad = document.getElementById("selectPrioridad");
 const fechaHoy = document.getElementById("fechaHoy");
 const fechaFinalizacion = document.getElementById("fechaFinalizacion");
+const horaCreacion = document.getElementById("horaCreacion");
 
 var snapFechaFin = "";
 var snapVisibility = "";
@@ -57,7 +60,8 @@ auth.onAuthStateChanged(function (user) {
                     document.getElementById("idTarea"),
                     document.getElementById("tituloTarea"),
                     document.getElementById("descripcionTarea"),
-                    document.getElementById("selectPrioridad")
+                    document.getElementById("selectPrioridad"),
+                    document.getElementById("horaCreacion")
                     );
 
             snapFechaFin = parseDate(btnVisibility.value);
@@ -87,7 +91,7 @@ auth.onAuthStateChanged(function (user) {
     } else {
 
 
-        generateToast("Autenticación", "Usuario deslogueado !",(today.getHours() + ":" + today.getMinutes()), 3000);
+        generateToast("Autenticación", "Usuario deslogueado !", (today.getHours() + ":" + today.getMinutes()), 3000);
         setTimeout(function () {
             location.href = "..\\Index.html"
         }, 3000);
@@ -121,23 +125,24 @@ function editTask() {
 
         const postData = {
             AdjuntosTarea: "/",
-            DescripcionTarea: inputDescripcionTarea.value,
+            DescripcionTarea: preventCodeInjection(inputDescripcionTarea.value),
             EstadoTarea: true,
             FechaCreacionTarea: parseDate(fechaHoy.value),
+            HoraCreacion:horaCreacion.value,
             FechaVencimientoTarea: parseDate(fechaFinalizacion.value),
             IDPadre: "",
             IDTarea: labelIdTarea.innerHTML,
             IDUsuario: auth.currentUser.uid,
-            NombreTarea: inputTituloTarea.value,
+            NombreTarea: preventCodeInjection(inputTituloTarea.value),
             PrioridadTarea: selectPrioridad.value,
             VisibilidadTarea: valueVisibility
         };
 
         changeData("Tareas", labelIdTarea.innerHTML, postData);
 
-        /**
-         * Mostraremos el toast antes de cambiar de página.
-         */
+        setTimeout(function () {
+            location.href = "./MainPage.html";
+        }, 1000);
 
 
         setTimeout(function () {
@@ -170,22 +175,27 @@ function createTask(btnVisibility, fechaHoy, fechaFinalizacion, labelIdTarea, in
     if (validado) {
 
 
+
         const postData = {
             AdjuntosTarea: "/",
-            DescripcionTarea: inputDescripcionTarea.value,
+            DescripcionTarea: preventCodeInjection(inputDescripcionTarea.value),
             EstadoTarea: true,
-            FechaCreacionTarea: parseDate(today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate()),
+            FechaCreacionTarea: parseDate(today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate()),            
+            HoraCreacion: parseHour(today.getHours() + ":" + today.getMinutes()),
             FechaVencimientoTarea: parseDate(fechaFinalizacion.value),
             IDPadre: "",
             IDTarea: labelIdTarea.innerHTML,
             IDUsuario: auth.currentUser.uid,
-            NombreTarea: inputTituloTarea.value,
+            NombreTarea: preventCodeInjection(inputTituloTarea.value),
             PrioridadTarea: selectPrioridad.value,
             VisibilidadTarea: valueVisibility
         };
 
-
         changeData("Tareas", labelIdTarea.innerHTML, postData);
+
+        setTimeout(function () {
+            location.href = "./MainPage.html";
+        }, 1000);
 
         /**
          * Mostraremos el toast antes de cambiar de página.
@@ -219,7 +229,7 @@ function createTask(btnVisibility, fechaHoy, fechaFinalizacion, labelIdTarea, in
             fechaFinalizacion.style.border = "1px solid black";
         }
 
-        generateToast("Error de verificación", "Rellena los campos !",(today.getHours() + ":" + today.getMinutes()), 2000);
+        generateToast("Error de verificación", "Rellena los campos !", (today.getHours() + ":" + today.getMinutes()), 2000);
 
     }
 
@@ -249,8 +259,10 @@ divBtnVisibility.onclick = () => {
 
     if (btnVisibility.value == 0) {
         btnVisibility.value = 1;
+        document.getElementById("labelVisibility").className = "fa-solid fa-lock-open";
     } else {
         btnVisibility.value = 0;
+        document.getElementById("labelVisibility").className = "fa-solid fa-lock";
     }
 
 };

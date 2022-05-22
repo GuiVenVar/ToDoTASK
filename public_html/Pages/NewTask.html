@@ -32,7 +32,9 @@
         <title>Mi TO-DO Task</title>
     </head>
     <body>
-
+        <!-- Hiddens -->
+        <input type="hidden" id="horaCreacion" value=""/>
+        <! END HIDDENS -->
         <!--TOAST-->
         <div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts " style="z-index:9999;">
             <div class="toast-container position-absolute p-3 top-0 end-0" id="toastPlacement">
@@ -66,13 +68,20 @@
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/tododaw.appspot.com/o/photoUser%2F3lKgi8MdQHRCFmhsUZGiTRYOr9h2.jpg?alt=media&amp;token=3b336128-c642-4c14-8b5d-64930ba86fd4" id="fotoPerfilNav" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="" alt="mdo" width="32" height="32" class="rounded-circle" id="fotoPerfilNav" >
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" id="dropdownUser1">
-                        <li><a class="dropdown-item" href="..\Pages\NewTask.html">Nuevo Proyecto...</a></li>
-                        <li><a class="dropdown-item" href="..\Pages\Profile.html">Perfil</a></li>
+                        <li><a class="dropdown-item" href="..\Pages\NewTask.html">
+                                <i class="fa-solid fa-pen" style="color:#81A594;"></i>
+                                Nuevo Proyecto...</a></li>
+                        <li><a class="dropdown-item" href="..\Pages\Profile.html">
+                                <i class="fa-solid fa-address-card" style="color:#81A594;"></i>
+                                Perfil</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#" id="signOut">Cerrar Sesión</a></li>
+                        <li><a class="dropdown-item" href="#" id="signOut">
+
+                                <i class="fa-solid fa-door-open"  style="color:#81A594;"></i>
+                                Cerrar Sesión</a></li>
                     </ul>
                 </div>
 
@@ -107,11 +116,11 @@
 
                         <div class=".pt-5 text-end d-flex justify-content-between" style="">
                             <div class="text-lg-start text-md-start d-flex " style="padding-left: 0.25rem;padding-top: 0.25rem;">
-                                <label type="text" class="">ID:&nbsp;</label>
+                                <label type="text" class=""><i class="fa-solid fa-fingerprint"></i>&nbsp;</label>
                                 <label type="text" id="idTarea" name="idTarea" placeholder="Cargando" class="w-100"></label>
                             </div>
                             <div style="padding-right:1rem;">
-                                <label for="visibility">Privada/Publica</label><br>
+                                <label for="visibility" id="labelVisibility" class="fa-solid fa-lock">&nbsp;&nbsp;</label><br>
                                 <div class="float-end" id="divVisibility" style="width: fit-content;">
                                     <input type="range" value="0" id="visibility" min="0" max="1" style="width:25px; height: 20px; pointer-events: none;">
                                 </div>

@@ -20,9 +20,10 @@ and open the template in the editor.
 
         <!-- LordIcon Script --> 
         <script src="https://cdn.lordicon.com/lusqsztk.js"></script> <!--sideNav Home -->
-
+        
 
     </head>
+
     <!--TOAST-->
     <div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts " style="z-index:9999;">
         <div class="toast-container position-absolute p-3 top-0 end-0" id="toastPlacement">
@@ -59,13 +60,20 @@ and open the template in the editor.
 
             <div class="dropdown text-end">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://restorixhealth.com/wp-content/uploads/2018/08/No-Image.png" id="fotoPerfilNav" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <img src="" alt="mdo" width="32" height="32" class="rounded-circle" id="fotoPerfilNav" >
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" id="dropdownUser1">
-                    <li><a class="dropdown-item" href="..\Pages\NewTask.html">Nuevo Proyecto...</a></li>
-                    <li><a class="dropdown-item" href="..\Pages\Profile.html">Perfil</a></li>
+                    <li><a class="dropdown-item" href="..\Pages\NewTask.html">
+                            <i class="fa-solid fa-pen" style="color:#81A594;"></i>
+                            Nuevo Proyecto...</a></li>
+                    <li><a class="dropdown-item" href="..\Pages\Profile.html">
+                            <i class="fa-solid fa-address-card" style="color:#81A594;"></i>
+                            Perfil</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#" id="signOut">Cerrar Sesión</a></li>
+                    <li><a class="dropdown-item" href="#" id="signOut">
+
+                            <i class="fa-solid fa-door-open"  style="color:#81A594;"></i>
+                            Cerrar Sesión</a></li>
                 </ul>
             </div>
 
@@ -157,6 +165,8 @@ and open the template in the editor.
         <div class="col col-lg-4" style="background-color:#f8f8ff;"></div>
     </div>
 
+
+   
     <!-- Cargamos el javascript de la pagina -->
     <script type="module" src="../JavaScript/Profile/ProfilePage.js"></script>
 

@@ -229,7 +229,7 @@ export function registerUser(textNombre, textApellidos, textEdad, textTelefono, 
     }
 }
 
-export function loadTask(idTarea, btnVisibility, fechaHoy, fechaFinalizacion, labelIdTarea, inputTituloTarea, inputDescripcionTarea, selectPrioridad) {
+export function loadTask(idTarea, btnVisibility, fechaHoy, fechaFinalizacion, labelIdTarea, inputTituloTarea, inputDescripcionTarea, selectPrioridad , horaCreacion) {
 
     const dbRef = ref(db, 'Tareas/' + idTarea);
     onValue(dbRef, (snapshot) => {
@@ -249,6 +249,7 @@ export function loadTask(idTarea, btnVisibility, fechaHoy, fechaFinalizacion, la
             inputTituloTarea.value = data.NombreTarea;
             inputDescripcionTarea.value = data.DescripcionTarea;
             selectPrioridad.value = data.PrioridadTarea;
+            horaCreacion.value = data.HoraCreacion;
 
         } else {
 
@@ -271,9 +272,13 @@ export function changeData(dbReference, ID, postData) {
             .then(() => {
 
                 generateToast("Firebase", "Se ha completado correctamente.", (today.getHours() + ":" + today.getMinutes()), 2000);
-                setTimeout(function () {
-                    location.href = "./MainPage.html"
-                }, 2000);
+//                setTimeout(function () {
+//                    if (window.location.href.includes("NewTask")) {
+//                        location.href = "./MainPage.html";
+//                    } else {
+//                        location.reload();
+//                    }
+//                }, 1000);
             })
             .catch((error) => {
                 generateToast("Error de Firebase", "Ha fallado la tarea , verifica la consola", (today.getHours() + ":" + today.getMinutes()), 5000);
@@ -284,18 +289,19 @@ export function changeData(dbReference, ID, postData) {
 
 export function shareTask(childSnap) {
 
-    if (childSnap.val().IDUsuario == getAuth().currentUser.uid) {
-        set(ref(db, "Tareas/" + childSnap.val().IDTarea), {
-            AdjuntosTarea: childSnap.val().AdjuntosTarea,
-            DescripcionTarea: childSnap.val().DescripcionTarea,
-            EstadoTarea: childSnap.val().EstadoTarea,
-            FechaCreacionTarea: childSnap.val().FechaCreacionTarea,
-            FechaVencimientoTarea: childSnap.val().FechaVencimientoTarea,
-            IDPadre: childSnap.val().IDPadre,
-            IDTarea: childSnap.val().IDTarea,
-            IDUsuario: childSnap.val().IDUsuario,
-            NombreTarea: childSnap.val().NombreTarea,
-            PrioridadTarea: childSnap.val().PrioridadTarea,
+    if (childSnap.getIdUsuario == getAuth().currentUser.uid) {
+        set(ref(db, "Tareas/" + childSnap.getId), {
+            AdjuntosTarea: childSnap.getAdjuntos,
+            DescripcionTarea: childSnap.getDescripcion,
+            EstadoTarea: childSnap.getEstado,
+            FechaCreacionTarea: childSnap.getFechaInicio,
+            HoraCreacion: childSnap.getHoraCreacion,
+            FechaVencimientoTarea: childSnap.getFechaFin,
+            IDPadre: childSnap.getIdPadre,
+            IDTarea: childSnap.getId,
+            IDUsuario: childSnap.getIdUsuario,
+            NombreTarea: childSnap.getNombre,
+            PrioridadTarea: childSnap.getPrioridad,
             VisibilidadTarea: true
 
         }).then(() => {
@@ -311,17 +317,19 @@ export function shareTask(childSnap) {
     }
 }
 
-export function deleteTask(IDTarea, IDUsuario) {
+export function deleteTask(NombreTarea, IDTarea, IDUsuario) {
 
     if (IDUsuario == getAuth().currentUser.uid) {
-        if (confirm("Seguro quieres borrar => " + IDTarea + "?")) {
+        if (confirm("Seguro quieres borrar : " + NombreTarea + "?")) {
 
             remove(ref(db, "Tareas/" + IDTarea))
+                    .then(() => {
+                        generateToast("Información de Tareas", "Se ha borrado la tarea " + IDTarea, (today.getHours() + ":" + today.getMinutes()), 3000);
+                    })
                     .catch((error) => {
                         generateToast("Error de Firebase", error.message, (today.getHours() + ":" + today.getMinutes()), 99999);
                     });
 
-            generateToast("Información de Tareas", "Se ha borrado la tarea " + childSnap.val().IDTarea, (today.getHours() + ":" + today.getMinutes()), 3000);
         }
     } else {
 
@@ -336,11 +344,26 @@ export function loadProfilePicture(fotoPerfil) {
             .then((url) => {
 
                 fotoPerfil.src = url;
-                console.log("Cargadas");
             })
             .catch((error) => {
                 console.log("Error cargando datos loadProfilePicture => " + error.message);
             }).finally(() => {
 
     });
+}
+
+export function uploadProfilePicture(filename, file) {
+
+
+    uploadBytes(storageRef(storage, 'photoUser/' + filename), file).then((snapshot) => {
+        console.log(snapshot);
+        console.log("subiendo datos...");
+    }).catch((error) => {
+        console.log("Error subiendo el archivo  ! \n " + error.message);
+    }).finally(() => {
+        console.log("Cargada !");
+        location.reload();
+    });
+
+
 }

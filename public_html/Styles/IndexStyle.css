@@ -32,7 +32,7 @@ body{
 
 }
 #taskList{  
-  
+
 }
 
 ul[class="nav nav-pills nav-flush flex-column mb-auto text-center"] li{
@@ -104,12 +104,14 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
 }
 .py-3 .multi-button  button[class="fas fa-trash"]{
     color:darkslategrey;
-     color:red;
+    color:red;
 }
 
 #dropdownUser1{
     margin-left: -200%;
 }
+
+
 
 /*Iphone X - SE */
 @media screen and (min-width: 340px){
@@ -203,4 +205,30 @@ a[class="list-group-item list-group-item-action  py-3 lh-tight"] .multi-button:h
 .my-float{
     margin-top:22px;
 }
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #81A594;
+    border-right: 8px solid #81A594;
+    border-bottom: 8px solid #81A594;
+    border-left:8px solid transparent;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
 

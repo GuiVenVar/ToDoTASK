@@ -11,10 +11,12 @@
     "author": "Guillem",
     "contributors": [],
     "dependencies": {
+        "axios": "^0.27.2",
         "compressorjs": "^1.1.1",
         "debug": "^4.3.4",
         "firebase": "^9.8.0",
         "firebase-tools": "^10.8.0",
-        "har-validator": "^5.1.5"
+        "har-validator": "^5.1.5",
+        "intersection-observer": "^0.12.0"
     }
 }

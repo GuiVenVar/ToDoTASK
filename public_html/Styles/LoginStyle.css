@@ -32,13 +32,13 @@ div[class="d-flex flex-column flex-md-row text-center text-md-start justify-cont
 div[class="container-fluid h-custom"]{
 
     background-color: #f8f8ff;
-    
+
 }
 
 /*Register*/
 
 .container{
-    top: 25%;
+    top: 1rem;
     position: fixed;
     display:none;
 }
@@ -82,3 +82,43 @@ div[class="container-fluid h-custom"]{
         overflow: visible;
     }
 }
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #81A594;
+    border-right: 8px solid #81A594;
+    border-bottom: 8px solid #81A594;
+    border-left:8px solid transparent;
+
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#lopdgddd {
+    position: fixed;
+    padding: 10px 0 20px;
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fdffde;
+    display: none; /* default hide div */
+}
+#lopdgddd .buttons { clear:both; padding: 5px 0; }
+#lopdgddd .buttons a { padding: 10px; text-decoration: none; }
+#lopdgddd .btn-accept { background: #219234; color: #fff;  }
+#lopdgddd .btn-denied { background: #E1306C; color: #fff;  }
+#lopdgddd .btn-conf { background: #4783a7; color: #fff; }
+#lopdgddd .btn-info { background: #219234; color: #fff; }

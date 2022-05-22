@@ -7,7 +7,7 @@
 
 
 import { firebase, analytics, auth, db, logIn, registerUser, restorePassword, loginFacebook} from "../Connection/BBDDFunctions.js";
-import { parseDate} from "../JSFunctions.js";
+import { parseDate, parseHour, generateToast} from "../JSFunctions.js";
 
 var btnLogin = document.getElementById("btnLogin");
 var btnRegister = document.getElementById("btnRegister");
@@ -21,7 +21,8 @@ var closeBtnRegister = document.getElementById("closeBtnRegister");
 var closeBtnForgot = document.getElementById("closeBtnForgot");
 var btnRegistro = document.getElementById("btnRegister");
 var btnForgot = document.getElementById("btnForgot");
-
+var myDate = new Date();
+document.getElementById("edadRegistro").value = parseDate(myDate.getFullYear() + "/" + (myDate.getMonth() + 1) + "/" + myDate.getDate());
 btnFb.onclick = () => {
     loginFacebook();
 };
@@ -66,6 +67,48 @@ function loadLogin() {
     forgotContainer.style.display = "none";
 }
 
+
+window.addEventListener('load', () => {
+
+    // hide lopdgdd bar
+    function hideLopdgdd() {
+        localStorage.setItem("lopdgdd_bar", 0);
+        lopdgddBar.style.display = "none"; // hide bar
+
+    }
+
+    let lopdgddBar = document.querySelector("#lopdgddd");
+    if (localStorage.getItem("lopdgdd_cookies") != 0) {
+        lopdgddBar.style.display = "block";
+        document.getElementById("containerLogin").style.pointerEvents = "none";
+    } else {
+        lopdgddBar.style.display = "none";
+        document.getElementById("containerLogin").style.pointerEvents = "all";
+    }
+
+    // Accept Btn
+    let lopdgdddAccept = document.querySelector('#lopdgddd .btn-accept');
+    lopdgdddAccept.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        localStorage.setItem("lopdgdd_cookies", 0); // accept Cookies
+        lopdgddBar.style.display = "none"; // hide bar
+        document.getElementById("containerLogin").style.pointerEvents = "all";
+        hideLopdgdd();
+    });
+
+    //  Denied Button
+    let lopdgddDenied = document.querySelector('#lopdgddd .btn-denied')
+    lopdgddDenied.addEventListener('click', (event) => {
+        event.preventDefault()
+        localStorage.setItem("lopdgdd_cookies", 1); // denied Cookies
+        document.getElementById("containerLogin").style.pointerEvents = "none";
+        hideLopdgdd();
+        generateToast("Cookie Alert!", "Sin cookies no puedes usar la web \n Recarga la web !", (myDate.getHours() + ":" + myDate.getMinutes()), 3000);
+        
+
+    });
+
+});
 
 btnForgot.onclick = loadForgot;
 registerButton.onclick = loadRegister;

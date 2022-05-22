@@ -33,9 +33,30 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
+
     </head>
 
     <body style="overflow: hidden;">
+
+
+        <div id="lopdgddd" >
+            <div class="container" style="z-index: 9999; display: block; background-color: papayawhip; max-width: 100%;top: 0;">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 info">
+                        <p>Utilizamos cookies propias para analizar nuestros servicios y de terceros para mostrarte publicidad relacionada con tus preferencias en base a un perfil elaborado a partir de tus hábitos de navegación. Puedes obtener más información y configurar tus preferencias en "Configuración" y + "Info".</p>
+                    </div>
+                    <div class="col-md-4 col-sm-12 buttons">
+                        <div class="buttons">
+                            <a href="" class="btn-accept">Aceptar</a>
+                            <a href="" class="btn-denied">Rechazar</a>
+                            <a href="Privacy.html" class="btn-info">+info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <!--TOAST-->
         <div aria-live="polite" aria-atomic="true" class="bg-dark position-relative bd-example-toasts " style="z-index:9999;">
@@ -103,38 +124,37 @@ and open the template in the editor.
                                 <div class="form-check mb-0">
 
                                 </div>
-                                <a href="#!" class="text-body" id="btnForgot">Forgot password?</a>
+                                <a href="#!" class="text-body" id="btnForgot">Recuperar contraseña</a>
                             </div>
 
                             <div class="text-center text-lg-start mt-4 pt-2">
                                 <button type="button" class="btn btn-primary btn-lg"
-                                        style="padding-left: 2.5rem; padding-right: 2.5rem;" id="btnLogin">Login</button>
-                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                                                                                                  class="link-danger" id="containerBtnRegister">Register</a></p>
+                                        style="padding-left: 2.5rem; padding-right: 2.5rem;" id="btnLogin">Entrar</button>
+                                <p class="small fw-bold mt-2 pt-1 mb-0">No tienes una cuenta? <a href="#!"
+                                                                                                 class="link-danger" id="containerBtnRegister">Registrate</a></p>
                             </div>
 
                         </form>
                     </div>
                 </div>
             </div>
-            <div
-                class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-5 px-4 px-xl-5 bg-primary overflow-none">
+            <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between h-100 pt-3 px-xl-5 bg-primary position-relative">
                 <!-- Copyright -->
-                <div class="text-white mb-3 mb-md-0">
+                <div class="text-white mb-3 mb-md-0 pt-3">
                     Guillem Ventura © 2022. IES Sant Vicent Ferrer.
                 </div>
 
-                <div>
-                    <a href="#!" class="text-white me-4">
+                <div class="text-white mb-3 mb-md-0 pt-3">
+                    <a href="#!" class="text-white p-3">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#!" class="text-white me-4">
+                    <a href="#!" class="text-white p-3">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#!" class="text-white me-4">
+                    <a href="#!" class="text-white p-3">
                         <i class="fab fa-google"></i>
                     </a>
-                    <a href="#!" class="text-white">
+                    <a href="#!" class="text-white p-3">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -148,7 +168,7 @@ and open the template in the editor.
                 <div class="col-xs-12 col-sm-12 col-md-6 col-sm-offset-2 col-md-offset-4" style="z-index: 999;">
                     <div class="panel panel-default w-100">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Registro
+                            <h3 class="panel-title p-3"><i class="fa-solid fa-address-card"></i>&nbsp;Registro
                                 <input type="button" value="&#xf00d" id="closeBtnRegister"
                                        style="font-family: FontAwesome; border:none; cursor:pointer; ">
                             </h3>
@@ -156,71 +176,71 @@ and open the template in the editor.
                         <hr class="dropdown-divider border-info">
                         <div class="panel-body">
                             <form role="form" action="" id="forgotForm">
-                                <div class="row">
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="row ">
+                                    <div class="col-xs-6 col-sm-6 col-md-6  p-3 pb-0">
                                         <div class="form-group">
                                             <input type="text" name="nombre" id="nombreRegistro"
                                                    class="form-control input-sm" placeholder="Nombre">
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 p-3 pb-0">
                                         <div class="form-group">
                                             <input type="text" name="apellidos" id="apellidosRegistro"
                                                    class="form-control input-sm" placeholder="Apellidos">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="row ">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 p-3 pb-0">
                                         <div class="form-group">
                                             <input type="date" name="edad" id="edadRegistro" class="form-control input-sm"
-                                                   placeholder="Edad">
+                                                   >
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 p-3 pb-0">
                                         <div class="form-group">
                                             <input type="tel" class="form-control input-sm" id="telefonoRegistro"
-                                                   name="phone" placeholder="123456789" pattern="[0-9]{9}" required>
+                                                   name="phone" placeholder="Telefono" pattern="[0-9]{9}" required>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="row ">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 p-3 pb-0">
                                         <div class="form-group">
                                             <input type="text" name="empresa" id="empresaRegistro"
                                                    class="form-control input-sm" placeholder="Empresa">
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 p-3 pb-0">
                                         <div class="form-group">
                                             <input type="text" name="cargo" id="cargoEmpresaRegistro"
                                                    class="form-control input-sm" placeholder="Cargo en la empresa">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group form-group p-1 pt-3 pb-0">
                                     <input type="email" name="email" id="correoRegistro" class="form-control input-sm"
                                            placeholder="Correo Electronico">
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 p-3 pb-0">
                                         <div class="form-group">
                                             <input type="password" name="password" id="passwordRegistro"
                                                    class="form-control input-sm" placeholder="Contraseña">
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 p-3 pb-0">
                                         <div class="form-group">
                                             <input type="password" name="password_confirmation" id="rtPasswordRegistro"
                                                    class="form-control input-sm" placeholder="Reescribe la contraseña">
                                         </div>
                                     </div>
                                 </div>
-
-                                <input type="button" value="Registro" class="btn btn-info btn-block" id="btnRegister">
-
+                                <div class="p-3 pb-3">
+                                    <input type="button" value="Registro" class="btn btn-info btn-block w-25" id="btnRegister">
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -234,7 +254,7 @@ and open the template in the editor.
                 <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-2 col-md-offset-4">
                     <div class="panel panel-default w-100">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Recupera tu cuenta
+                            <h3 class="panel-title p-1"><i class="fa-solid fa-hammer"></i> &nbsp;Recupera tu cuenta
                                 <input type="button" value="&#xf00d" id="closeBtnForgot"
                                        style="font-family: FontAwesome; border:none; cursor:pointer; ">
                             </h3>
@@ -242,12 +262,10 @@ and open the template in the editor.
                         <hr class="dropdown-divider border-info">
                         <div class="panel-body">
                             <form role="form" action="" id="registerForm">
-                                <div class="form-group">
-                                    <input type="email" name="email" id="correoForgot" class="form-control input-sm"
-                                           placeholder="Correo Electronico">
+                                <div class="form-group p-3 pb-0">
+                                    <input type="email" name="email" id="correoForgot" class="form-control input-sm" placeholder="Correo Electronico">
                                 </div>
-                                <input type="button" value="Recuperar cuenta" class="btn btn-info btn-block"
-                                       id="btnSendForgot">
+                                <div class="p-3 pb-3"> <input type="button" value="Recuperar cuenta" class="btn btn-info btn-block" id="btnSendForgot"> </div>
                             </form>
                         </div>
                     </div>
